@@ -11,7 +11,7 @@ export default function Form() {
   } = useForm();
 
   const create = async (data) => {
-    const noteData = await fetch(`${process.env.PROD_URL}/api/notes`, {
+    const noteData = await fetch(`https://inner-note.vercel.app/api/notes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
