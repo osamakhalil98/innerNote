@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export default async function dbConnect() {
+  const MONGODB_URI = process.env.MONGODB_URI;
   const connection = {};
   const options = {
     useNewUrlParser: true,
@@ -8,10 +9,7 @@ export default async function dbConnect() {
   };
 
   if (connection.isConnected) return;
-  const db = await mongoose.connect(
-    "mongodb+srv://theosadxen:nahar2011@cluster0.a5rdm.mongodb.net/notesdb?retryWrites=true&w=majority",
-    options
-  );
+  const db = await mongoose.connect(MONGODB_URI, options);
 
   connection.isConnected = db.connections[0].readyState;
 }
