@@ -17,7 +17,7 @@ export default function Home() {
         <p className="font-bold text-white lg:text-6xl mb-4 pb-3 my-auto py-8 title">
           Express yourself safely with InnerNote. <br />
           <span className="title lg:text-2xl">
-            and dive deep into other people's minds
+            and dive deep into other people&apos;s minds
           </span>
         </p>
         <span className="mb-3 text-blue-600 cursor-pointer hover:underline">

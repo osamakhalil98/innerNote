@@ -68,7 +68,7 @@ export default function Table() {
           {notesData
             ? notesData.map((elm, idx) => {
                 return (
-                  <tr>
+                  <tr key={idx}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white ">
                       <p className="w-80 truncate cursor-pointer">
                         {" "}
