@@ -10,7 +10,12 @@ export default function NoteId({ nnote }) {
   const [note, setNote] = useState({});
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(`https://inner-note.vercel.app/${id}`);
+      let response = await fetch(`https://inner-note.vercel.app/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
       const { data } = await response.json();
       setNote(data);
     }
@@ -67,7 +72,12 @@ export default function NoteId({ nnote }) {
 
 NoteId.getInitialProps = async (ctx) => {
   const id = ctx.query;
-  const fetchNote = await fetch(`https://inner-note.vercel.app/${id}`);
+  const fetchNote = await fetch(`https://inner-note.vercel.app/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
   const { data } = fetchNote.json();
   return {
     props: {

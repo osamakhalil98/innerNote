@@ -6,7 +6,12 @@ import Link from "next/link";
 export default function Table() {
   const [notesData, setNotesData] = useState([]);
   const getNotes = async () => {
-    const notes = await fetch(`https://inner-note.vercel.app/api/notes`);
+    const notes = await fetch(`https://inner-note.vercel.app/api/notes`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
     const jsonNotes = await notes.json();
     const data = await jsonNotes.data;
     setNotesData(data);

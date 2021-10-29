@@ -13,7 +13,10 @@ export default function Form() {
   const create = async (data) => {
     const noteData = await fetch(`https://inner-note.vercel.app/api/notes`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify(data),
     });
 
