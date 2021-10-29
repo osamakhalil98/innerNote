@@ -10,7 +10,7 @@ export default function NoteId({ nnote }) {
   const [note, setNote] = useState({});
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(`http://localhost:3000/api/notes/${id}`);
+      let response = await fetch(`${process.env.PROD_URL}/${id}`);
       const { data } = await response.json();
       setNote(data);
     }
@@ -67,7 +67,7 @@ export default function NoteId({ nnote }) {
 
 NoteId.getInitialProps = async (ctx) => {
   const id = ctx.query;
-  const fetchNote = await fetch(`http://localhost:3000/api/notes/${id}`);
+  const fetchNote = await fetch(`${process.env.PROD_URL}/${id}`);
   const { data } = fetchNote.json();
   return {
     props: {

@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Table() {
   const [notesData, setNotesData] = useState([]);
   const getNotes = async () => {
-    const notes = await fetch("http://localhost:3000/api/notes");
+    const notes = await fetch(`${process.env.PROD_URL}/api/notes`);
     const jsonNotes = await notes.json();
     const data = await jsonNotes.data;
     setNotesData(data);
