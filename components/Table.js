@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Table() {
   const [notesData, setNotesData] = useState([]);
   const getNotes = async () => {
-    const notes = await fetch(`https://inner-note.vercel.app/api/notes`, {
+    const notes = await fetch(`/api/notes`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -19,7 +19,7 @@ export default function Table() {
 
   useEffect(() => {
     getNotes();
-  }, [notesData]);
+  }, []);
 
   const typeColor = (type) => {
     switch (type) {
@@ -38,43 +38,43 @@ export default function Table() {
   };
 
   return (
-    <div className="shadow overflow-hidden border-b border-gray-800 rounded-lg">
-      <table className="min-w-full divide-y divide-gray-800 rounded-xl">
+    <div className="shadow overflow-hidden border-b border-gray-800 rounded-lg table mt-4">
+      <table className="divide-y divide-gray-800 rounded-xl ">
         <thead>
           <tr className="bg-gray-200 mt-4">
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+              className="md:px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
             >
               Message
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+              className="md:px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider note-name-author"
             >
               Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+              className="md:px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider note-name"
             >
               Note Name
             </th>
 
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+              className="md:px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider note-type"
             >
               Note Type
             </th>
           </tr>
         </thead>
-        <tbody className="bg-gray-700 divide-y divide-gray-500">
+        <tbody className="bg-gray-700 divide-y divide-grey-200 md:w-96 table-body">
           {notesData
             ? notesData.map((elm, idx) => {
                 return (
-                  <tr key={idx}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white ">
+                  <tr key={idx} className="md:w-96">
+                    <td className="md:px-6 py-4 whitespace-nowrap text-sm font-medium text-white ">
                       <p className="w-80 truncate cursor-pointer">
                         {" "}
                         <Link
@@ -85,14 +85,14 @@ export default function Table() {
                         </Link>
                       </p>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                    <td className="md:px-6 py-4 whitespace-nowrap text-sm font-medium text-white note-name-author">
                       {elm.name}
                     </td>
 
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                    <td className="md:px-6 py-4 whitespace-nowrap text-sm font-medium text-white note-name">
                       {elm.noteName}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap capitalize">
+                    <td className="md:px-6 py-4 whitespace-nowrap capitalize note-type">
                       <span
                         className={`flex-shrink-0 inline-block px-2 py-0.5 text-xs font-medium rounded-full ${typeColor(
                           elm.noteType

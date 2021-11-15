@@ -46,7 +46,7 @@ export default function Form() {
       <Toaster />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form pb-8 pt-4 px-4 rounded-xl bg-gray-800 h-auto mx-w-sm shadow-1xl w-96 text-gray-100 mb-4"
+        className="form pb-8 pt-4 px-4 rounded-xl bg-gray-800 h-auto mx-w-sm shadow-1xl sm:w-96 text-gray-100 mb-4"
       >
         <div className="mt-2 max-w-md">
           <div className="grid grid-cols-1 gap-6">
@@ -62,7 +62,7 @@ export default function Form() {
                 autoComplete="name"
                 className={`mt-1
                     block
-                    w-80
+                    sm:w-80
                     mx-auto
                     rounded-md
                     bg-gray-700
@@ -86,7 +86,7 @@ export default function Form() {
                 id="email"
                 className={`mt-1
                     block
-                    w-80
+                    sm:w-80
                     mx-auto
                     rounded-md
                     bg-gray-700
@@ -110,7 +110,7 @@ export default function Form() {
                 {...register("noteName", { required: true })}
                 className={`mt-1
                     block
-                    w-80
+                    sm:w-80
                     mx-auto
                     rounded-md
                     bg-gray-700
@@ -134,7 +134,7 @@ export default function Form() {
                 defaultValue="THOUGHT"
                 className="
                     block
-                    w-80
+                    sm:w-80
                     mx-auto
                     rounded-md
                     bg-gray-700
@@ -160,7 +160,7 @@ export default function Form() {
                 className={`mt-1
                     mb-1
                     block
-                    w-80
+                    sm:w-80
                     mx-auto
                     rounded-md
                     bg-gray-700
@@ -188,7 +188,7 @@ export default function Form() {
                   transition: { duration: 0.2 },
                 }}
                 type="submit"
-                className="w-80 justify-center py-3 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="sm:w-80 justify-center py-3 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Submit
               </motion.button>

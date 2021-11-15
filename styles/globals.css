@@ -16,8 +16,45 @@ a {
 .title {
   font-family: "Inter", sans-serif;
 }
+
+.sub-title {
+  font-family: "Inter", sans-serif;
+}
 * {
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 35px;
+  }
+  .title-wrapper {
+    width: 400px;
+  }
+  .sub-title {
+    font-size: 15px;
+  }
+  .note-type {
+    display: none;
+  }
+  .note-name {
+    display: none;
+  }
+  .note-name-author {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 25px;
+  }
+  .title-wrapper {
+    width: 300px;
+  }
+  .sub-title {
+    font-size: 12px;
+  }
 }
 
 @tailwind base;

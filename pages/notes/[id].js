@@ -10,15 +10,12 @@ export default function NoteId({ nnote }) {
   const [note, setNote] = useState({});
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(
-        `https://inner-note.vercel.app/api/notes/${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      let response = await fetch(`/api/notes/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
       const { data } = await response.json();
       setNote(data);
     }
@@ -44,10 +41,10 @@ export default function NoteId({ nnote }) {
     }
   };
   return (
-    <div className="bg-gray-900 min-h-screen flex flex-col	justify-center items-center">
+    <div className="bg-gray-900 min-h-screen flex flex-col	justify-center items-center overflow-hidden">
       {note ? handleType(note.noteType) : ""}
 
-      <div className="mx-32 w-sm pb-8 pt-4 px-8 rounded-xl bg-gray-800 shadow-1xl text-gray-100 mb-4">
+      <div className="mx-32 w-sm pb-8 pt-4 px-8 rounded-xl bg-gray-800 shadow-1xl text-gray-100 mb-4 md:w-96">
         {note ? (
           <>
             <div className="text-center mb-4">
@@ -55,10 +52,8 @@ export default function NoteId({ nnote }) {
                 {note.noteName}
               </span>
             </div>
-            <p className="title text-lg w-96">{note.message} </p> <br />
-            <span className="title text-sm">
-              {note.name ? `-${note.name}` : ""}
-            </span>
+            <p className=" md:text-lg md:w-96">{note.message} </p> <br />
+            <span className=" text-sm">{note.name ? `-${note.name}` : ""}</span>
           </>
         ) : (
           ""
@@ -75,15 +70,12 @@ export default function NoteId({ nnote }) {
 
 NoteId.getInitialProps = async (ctx) => {
   const id = ctx.query;
-  const fetchNote = await fetch(
-    `https://inner-note.vercel.app/api/notes/${id}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }
-  );
+  const fetchNote = await fetch(`/api/notes/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
   const { data } = fetchNote.json();
   return {
     props: {
