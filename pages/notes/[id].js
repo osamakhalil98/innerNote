@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import { server } from "../../config";
 
 export default function NoteId({ nnote }) {
   const router = useRouter();
@@ -71,8 +72,8 @@ export default function NoteId({ nnote }) {
 }
 
 NoteId.getInitialProps = async (ctx) => {
-  const id = ctx.query;
-  const fetchNote = await fetch(`/api/notes/${id}`, {
+  const { id } = ctx.query;
+  const fetchNote = await fetch(`${server}/api/notes/${id}`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
