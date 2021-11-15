@@ -52,8 +52,10 @@ export default function NoteId({ nnote }) {
                 {note.noteName}
               </span>
             </div>
-            <p className=" md:text-lg md:w-96">{note.message} </p> <br />
-            <span className=" text-sm">{note.name ? `-${note.name}` : ""}</span>
+            <p className="title text-lg md:sw-90">{note.message} </p> <br />
+            <span className="title text-sm">
+              {note.name ? `-${note.name}` : ""}
+            </span>
           </>
         ) : (
           ""
