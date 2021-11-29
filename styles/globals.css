@@ -15,6 +15,8 @@ a {
 
 .title {
   font-family: "Inter", sans-serif;
+  color: #818cf8;
+  max-width: 800px;
 }
 
 .sub-title {
@@ -22,11 +24,24 @@ a {
 }
 * {
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 @media (max-width: 600px) {
   .title {
-    font-size: 35px;
+    font-size: 2.3rem;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    line-height: 1.1em;
+  }
+  .explore-title {
+    font-size: 2.3rem;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    line-height: 1.1em;
+  }
+  .card-wrapper {
+    margin-bottom: 10px;
   }
   .title-wrapper {
     width: 400px;

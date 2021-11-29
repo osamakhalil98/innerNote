@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import Card from "./Card";
 import Link from "next/link";
 
-export default function Table() {
+export default function Grid() {
   const [notesData, setNotesData] = useState([]);
   const getNotes = async () => {
     const notes = await fetch(`/api/notes`, {
@@ -21,24 +22,29 @@ export default function Table() {
     getNotes();
   }, []);
 
-  const typeColor = (type) => {
-    switch (type) {
-      case "CONFESSION" || "confession":
-        return "bg-red-400 text-red-800";
-
-      case "IDEA" || "idea":
-        return "bg-yellow-300 text-yellow-700";
-
-      case "DREAM" || "dream":
-        return "bg-blue-200 text-blue-800";
-
-      default:
-        return "bg-green-400 text-green-800";
-    }
-  };
-
   return (
-    <div className="shadow overflow-hidden border-b border-gray-800 rounded-lg table mt-4">
+    <div className="grid lg:grid-cols-3">
+      {notesData
+        ? notesData.map((note, idx) => {
+            return (
+              <>
+                <Card
+                  key={idx}
+                  id={note._id}
+                  noteName={note.noteName}
+                  name={note.name}
+                  message={note.message}
+                  type={note.noteType}
+                />
+              </>
+            );
+          })
+        : ""}
+    </div>
+  );
+}
+
+/* <div className="shadow overflow-hidden border-b border-gray-800 rounded-lg table mt-4">
       <table className="divide-y divide-gray-800 rounded-xl ">
         <thead>
           <tr className="bg-gray-200 mt-4">
@@ -107,6 +113,4 @@ export default function Table() {
             : ""}
         </tbody>
       </table>
-    </div>
-  );
-}
+            </div>*/

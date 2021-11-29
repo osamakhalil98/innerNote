@@ -27,6 +27,28 @@ const NoteSchema = new Schema({
     required: false,
     maxlength: 200,
   },
+  angry: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+  sad: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+  love: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+  like: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
 });
 
-module.exports = mongoose.models.Note || mongoose.model("Note", NoteSchema);
+module.exports = mongoose.models
+  ? mongoose.models.Note
+  : mongoose.model("Note", NoteSchema) || mongoose.model("Note", NoteSchema);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-
+import { server } from "../config";
 import toast, { Toaster, toaster } from "react-hot-toast";
 export default function Form() {
   const {
@@ -11,7 +11,7 @@ export default function Form() {
   } = useForm();
 
   const create = async (data) => {
-    const noteData = await fetch(`https://inner-note.vercel.app/api/notes`, {
+    const noteData = await fetch(`/api/notes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,8 +19,6 @@ export default function Form() {
       },
       body: JSON.stringify(data),
     });
-
-    console.log(noteData);
   };
 
   const onSubmit = async (data) => {
@@ -46,7 +44,7 @@ export default function Form() {
       <Toaster />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="form pb-8 pt-4 px-4 rounded-xl bg-gray-800 h-auto mx-w-sm shadow-1xl sm:w-96 text-gray-100 mb-4"
+        className="form pb-8 pt-4 px-4 rounded-xl bg-indigo-600 h-auto mx-w-sm shadow-1xl sm:w-96 text-gray-700 mb-4"
       >
         <div className="mt-2 max-w-md">
           <div className="grid grid-cols-1 gap-6">
@@ -65,7 +63,7 @@ export default function Form() {
                     sm:w-80
                     mx-auto
                     rounded-md
-                    bg-gray-700
+                    bg-indigo-200
                     border-transparent
                     focus:border-gray-500  focus:ring-0 ${
                       errors.name
@@ -89,7 +87,7 @@ export default function Form() {
                     sm:w-80
                     mx-auto
                     rounded-md
-                    bg-gray-700
+                    bg-indigo-200
                     border-transparent
                     focus:border-gray-500  focus:ring-0 ${
                       errors.email
@@ -113,7 +111,7 @@ export default function Form() {
                     sm:w-80
                     mx-auto
                     rounded-md
-                    bg-gray-700
+                    bg-indigo-200
                     border-transparent
                     focus:border-gray-500  focus:ring-0 ${
                       errors.noteName
@@ -137,7 +135,7 @@ export default function Form() {
                     sm:w-80
                     mx-auto
                     rounded-md
-                    bg-gray-700
+                    bg-indigo-200
                     border-transparent
                     focus:border-gray-500  focus:ring-0
                   "
@@ -163,7 +161,7 @@ export default function Form() {
                     sm:w-80
                     mx-auto
                     rounded-md
-                    bg-gray-700
+                    bg-indigo-200
                     border-transparent
                     focus:border-gray-500  focus:ring-0
                     ${
@@ -188,12 +186,12 @@ export default function Form() {
                   transition: { duration: 0.2 },
                 }}
                 type="submit"
-                className="sm:w-80 justify-center py-3 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="sm:w-80 justify-center mx-auto py-3 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-800 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Submit
               </motion.button>
             </label>
-            <div className="block">
+            {/* <div className="block">
               <div className="mt-2">
                 <div>
                   <label className="inline-flex items-center">
@@ -202,7 +200,7 @@ export default function Form() {
                       className="
                           rounded
                           border-gray-300
-                          text-indigo-600
+                          text-gray-600
                           shadow-sm
                           focus:border-indigo-300
                           focus:ring
@@ -211,13 +209,13 @@ export default function Form() {
                           focus:ring-opacity-50
                         "
                     />
-                    <span className="ml-2 text-sm">
+                    <span className="ml-2 text-sm text-white">
                       Share InnerNote in incognito
                     </span>
                   </label>
                 </div>
               </div>
-            </div>
+              </div>*/}
           </div>
         </div>
       </form>

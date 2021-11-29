@@ -1,13 +1,20 @@
+import { set } from "mongoose";
 import dbConnect from "../../../middleware/database";
 import Note from "../../../models/Note";
+import { useRouter } from "next/router";
 
 export default async function handler(req, res) {
   dbConnect();
 
-  const { noteType, message, email, name, noteName } = req.body;
+  const { noteType, message, email, name, noteName, angry, love, like, sad } =
+    req.body;
   const { method } = req;
+  const {
+    query: { id },
+  } = req;
   try {
     // inserting the deconstructed data into our db
+
     switch (method) {
       case "GET":
         try {
@@ -27,6 +34,10 @@ export default async function handler(req, res) {
             email,
             name,
             noteName,
+            angry: 0,
+            like: 0,
+            sad: 0,
+            love: 0,
           });
 
           res.status(201).json({ success: true, data: note });

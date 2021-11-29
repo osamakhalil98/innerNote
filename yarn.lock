@@ -1123,6 +1123,11 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
+emo-rating-react@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/emo-rating-react/-/emo-rating-react-1.0.0.tgz#e7ba28086013102d3cd170ab9e41221feafe7a99"
+  integrity sha512-VI4FYlJsasKWZIBRv8Fru6CL1XSUkB9wT10CKeohevVKda4hcxQHvo4Z+UxsecH3LarWfcNqLb6tD0+q+6h8HA==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
