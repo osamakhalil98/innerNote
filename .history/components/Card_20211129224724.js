@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Note from "../models/Note";
 import { useRouter } from "next/router";
 
 export default function Card({ noteName, name, message, type, id }) {

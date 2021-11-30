@@ -23,6 +23,21 @@ export default async (req, res) => {
         error: error,
       });
     }
+  }
+  if (method === "PUT") {
+    res.json({
+      message: "im in the put ",
+    });
+    try {
+      const note = await Note.findByIdAndUpdate(id, { sad: 10 });
+      res.status(200).json({ success: true, data: note });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: "something went wrong",
+        error: error,
+      });
+    }
   } else {
     res.status(400).json({ success: false });
   }

@@ -8,7 +8,9 @@ export default async function handler(req, res) {
 
   const { noteType, message, email, name, noteName } = req.body;
   const { method } = req;
-
+  const {
+    query: { id },
+  } = req;
   try {
     // inserting the deconstructed data into our db
 
@@ -18,7 +20,6 @@ export default async function handler(req, res) {
           const notes = await Note.find({});
           res.status(200).json({ success: true, data: notes });
         } catch (error) {
-          console.log("here");
           res.status(400).json({ error }, "This is the problem");
         }
 
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
         break;
 
       default:
-        res.status(400).json({ error: error }, "This is the errror lololo");
+        res.status(400).json("{ success: false }");
         break;
     }
   } catch (error) {

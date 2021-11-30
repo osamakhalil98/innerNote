@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Grid() {
   const [notesData, setNotesData] = useState([]);
   const getNotes = async () => {
-    const notes = await fetch(`http://localhost:3000/api/notes`, {
+    const notes = await fetch(`localhost:3000/api/notes`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

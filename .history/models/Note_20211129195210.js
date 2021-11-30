@@ -49,4 +49,6 @@ const NoteSchema = new Schema({
   },
 });
 
-module.exports = mongoose.models.Note || mongoose.model("Note", NoteSchema);
+module.exports = mongoose.models
+  ? mongoose.models.Note
+  : mongoose.model("Note", NoteSchema) || mongoose.model("Note", NoteSchema);
