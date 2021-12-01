@@ -8,14 +8,7 @@ import { HiEmojiSad } from "react-icons/hi";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { BsLightbulbFill } from "react-icons/bs";
-import {
-  TwitterShareButton,
-  TwitterIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-  FacebookShareButton,
-  FacebookIcon,
-} from "react-share";
+import { TwitterShareButton, TwitterIcon } from "react-share";
 
 export default function NoteId({ nnote }) {
   const size = 67;
@@ -126,19 +119,8 @@ export default function NoteId({ nnote }) {
           <div className="text-sm text-indigo-200">0</div>
         </div>
       </div>
-      <div className="flex my-3 py-3 ">
-        <TwitterShareButton url={window.location.href} title={note.noteName}>
-          <TwitterIcon size={32} round={true} className="mx-2" />
-        </TwitterShareButton>
-        <WhatsappShareButton url={window.location.href} title={note.noteName}>
-          <WhatsappIcon size={32} round={true} className="mx-2" />
-        </WhatsappShareButton>
-        <FacebookShareButton
-          url={window.location.href}
-          quote={`Check out this innerNote: ${note.noteName}`}
-        >
-          <FacebookIcon size={32} round={true} className="mx-2" />
-        </FacebookShareButton>
+      <div className="flex my-3 py-3">
+        <TwitterIcon size={32} round={true} />
       </div>
       <span className="mb-3 text-indigo-100 cursor-pointer hover:underline">
         <Link href="/notes">

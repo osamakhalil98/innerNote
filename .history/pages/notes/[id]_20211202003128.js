@@ -13,8 +13,7 @@ import {
   TwitterIcon,
   WhatsappShareButton,
   WhatsappIcon,
-  FacebookShareButton,
-  FacebookIcon,
+  FacebookMessengerShareButton,
 } from "react-share";
 
 export default function NoteId({ nnote }) {
@@ -127,18 +126,9 @@ export default function NoteId({ nnote }) {
         </div>
       </div>
       <div className="flex my-3 py-3 ">
-        <TwitterShareButton url={window.location.href} title={note.noteName}>
-          <TwitterIcon size={32} round={true} className="mx-2" />
-        </TwitterShareButton>
-        <WhatsappShareButton url={window.location.href} title={note.noteName}>
-          <WhatsappIcon size={32} round={true} className="mx-2" />
-        </WhatsappShareButton>
-        <FacebookShareButton
-          url={window.location.href}
-          quote={`Check out this innerNote: ${note.noteName}`}
-        >
-          <FacebookIcon size={32} round={true} className="mx-2" />
-        </FacebookShareButton>
+        <TwitterIcon size={32} round={true} className="mx-2" />
+        <WhatsappIcon size={32} round={true} className="mx-2" />
+        <FacebookMessangerIcon size={32} round={true} className="mx-2" />
       </div>
       <span className="mb-3 text-indigo-100 cursor-pointer hover:underline">
         <Link href="/notes">

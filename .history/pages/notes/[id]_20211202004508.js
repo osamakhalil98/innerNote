@@ -15,6 +15,7 @@ import {
   WhatsappIcon,
   FacebookShareButton,
   FacebookIcon,
+  FacebookShareCount,
 } from "react-share";
 
 export default function NoteId({ nnote }) {
