@@ -128,13 +128,13 @@ export default function NoteId({ nnote }) {
       </div>
       <div className="flex my-3 py-3 ">
         <TwitterShareButton
-          url={`https://inner-note.vercel.app/notes/${id}`}
+          url={`https://www.inner-note.vercel.app/${id}`}
           title={note.noteName}
         >
           <TwitterIcon size={32} round={true} className="mx-2" />
         </TwitterShareButton>
         <WhatsappShareButton
-          url={`https://inner-note.vercel.app/notes/${id}`}
+          url={`https://www.inner-note.vercel.app/${id}`}
           title={note.noteName}
         >
           <WhatsappIcon size={32} round={true} className="mx-2" />
