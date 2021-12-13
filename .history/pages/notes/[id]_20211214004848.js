@@ -29,7 +29,7 @@ export default function NoteId({ nnote }) {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch(`/api/notes/${id}`, {
+      let response = await fetch(`${server}/api/notes/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -226,31 +226,16 @@ export default function NoteId({ nnote }) {
 
 NoteId.getInitialProps = async (ctx) => {
   const { id } = ctx.query;
-  if (ctx.req) {
-    const fetchNote = await fetch(`/api/notes/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const { data } = fetchNote.json();
-    return {
-      props: {
-        nnote: data,
-      },
-    };
-  } else {
-    const fetchNote = await fetch(`${server}/api/notes/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const { data } = fetchNote.json();
-    return {
-      props: {
-        nnote: data,
-      },
-    };
-  }
+  const fetchNote = await fetch(`${server}/api/notes/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+  const { data } = fetchNote.json();
+  return {
+    props: {
+      nnote: data,
+    },
+  };
 };
