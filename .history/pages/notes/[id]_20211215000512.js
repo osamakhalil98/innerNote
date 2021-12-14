@@ -157,17 +157,12 @@ export default function NoteId({ nnote }) {
     });
   };
   const handleLikeChange = async () => {
-    //check if this client liked the note before or not first
     let count = likeCount;
-
-    if (likeLiked == true || likeLiked == "true") {
-      count -= 1;
-      setLikeLiked(false);
+    if (count === 0) {
+      count = 1;
+      console.log("clicked");
     } else {
-      count += 1;
-      localStorage.setItem(`like-liked-${id}`, true);
-      console.log(localStorage.getItem(`like-liked-${id}`));
-      setLikeLiked(true);
+      count = 0;
     }
     setLikeCount(count);
     await fetch(`/api/notes/${id}`, {
@@ -182,17 +177,11 @@ export default function NoteId({ nnote }) {
     });
   };
   const handleIdeaChange = async () => {
-    //check if this client liked the note before or not first
     let count = ideaCount;
-
-    if (ideaLiked == true || ideaLiked == "true") {
-      count -= 1;
-      setIdeaLiked(false);
+    if (count === 0) {
+      count = 1;
     } else {
-      count += 1;
-      localStorage.setItem(`idea-liked-${id}`, true);
-      console.log(localStorage.getItem(`idea-liked-${id}`));
-      setIdeaLiked(true);
+      count = 0;
     }
     setIdeaCount(count);
     await fetch(`/api/notes/${id}`, {

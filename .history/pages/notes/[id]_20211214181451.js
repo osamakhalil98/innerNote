@@ -23,37 +23,13 @@ export default function NoteId({ nnote }) {
   const id = router.query.id;
   const [note, setNote] = useState({});
   const [ideaCount, setIdeaCount] = useState(0);
-  const [ideaLiked, setIdeaLiked] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(`idea-liked-${id}`);
-      const initialValue = saved;
-      return initialValue || false;
-    }
-  });
+  const [ideaClicked, setIdeaClicked] = useState(false);
   const [sadCount, setSadCount] = useState(0);
-  const [sadLiked, setSadLiked] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(`sad-liked-${id}`);
-      const initialValue = saved;
-      return initialValue || false;
-    }
-  });
+  const [sadClicked, setSadClicked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [likeLiked, setLikeLiked] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(`like-liked-${id}`);
-      const initialValue = saved;
-      return initialValue || false;
-    }
-  });
+  const [likeClicked, setLikeClicked] = useState(false);
   const [loveCount, setLoveCount] = useState(0);
-  const [loveLiked, setLoveLiked] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(`love-liked-${id}`);
-      const initialValue = saved;
-      return initialValue || false;
-    }
-  });
+  const [loveClicked, setLoveClicked] = useState(false);
 
   async function fetchMyAPI() {
     let response = await fetch(`/api/notes/${id}`, {
@@ -70,16 +46,10 @@ export default function NoteId({ nnote }) {
     setLikeCount(data.stats.like);
     setLoveCount(data.stats.love);
     setIdeaCount(data.stats.idea);
+    window.localStorage.setItem(`sad-click-${id}`, false);
   }
 
-  /*if (typeof window !== "undefined") {
-    sadState = localStorage.setItem(`sad-liked-${id}`, false);
-  }*/
   useEffect(() => {
-    setSadLiked(window.localStorage.getItem(`sad-liked-${id}`));
-    setSadLiked(window.localStorage.getItem(`like-liked-${id}`));
-    setSadLiked(window.localStorage.getItem(`idea-liked-${id}`));
-    setSadLiked(window.localStorage.getItem(`love-liked-${id}`));
     fetchMyAPI();
   }, []);
 
@@ -102,18 +72,16 @@ export default function NoteId({ nnote }) {
   };
 
   const handleSadChange = async () => {
-    //check if this client liked the note before or not first
     let count = sadCount;
-
-    if (sadLiked == true || sadLiked == "true") {
-      count -= 1;
-      setSadLiked(false);
-    } else {
-      count += 1;
-      localStorage.setItem(`sad-liked-${id}`, true);
-      console.log(localStorage.getItem(`sad-liked-${id}`));
-      setSadLiked(true);
+    let max = count;
+    let min = count - 1;
+    // check if i reacted before or not
+    if (window.localStorage.getItem(`sad-click-${id}` == false)) {
+      console.log("hi");
+      count++;
+      window.localStorage.setItem(`sad-click-${id}`, true);
     }
+
     setSadCount(count);
     await fetch(`/api/notes/${id}`, {
       method: "PUT",
@@ -132,17 +100,11 @@ export default function NoteId({ nnote }) {
     });
   };
   const handleLoveChange = async () => {
-    //check if this client liked the note before or not first
     let count = loveCount;
-
-    if (loveLiked == true || loveLiked == "true") {
-      count -= 1;
-      setLoveLiked(false);
+    if (count === 0) {
+      count = 1;
     } else {
-      count += 1;
-      localStorage.setItem(`love-liked-${id}`, true);
-      console.log(localStorage.getItem(`love-liked-${id}`));
-      setLoveLiked(true);
+      count = 0;
     }
     setLoveCount(count);
     await fetch(`/api/notes/${id}`, {
@@ -157,17 +119,12 @@ export default function NoteId({ nnote }) {
     });
   };
   const handleLikeChange = async () => {
-    //check if this client liked the note before or not first
     let count = likeCount;
-
-    if (likeLiked == true || likeLiked == "true") {
-      count -= 1;
-      setLikeLiked(false);
+    if (count === 0) {
+      count = 1;
+      console.log("clicked");
     } else {
-      count += 1;
-      localStorage.setItem(`like-liked-${id}`, true);
-      console.log(localStorage.getItem(`like-liked-${id}`));
-      setLikeLiked(true);
+      count = 0;
     }
     setLikeCount(count);
     await fetch(`/api/notes/${id}`, {
@@ -182,17 +139,11 @@ export default function NoteId({ nnote }) {
     });
   };
   const handleIdeaChange = async () => {
-    //check if this client liked the note before or not first
     let count = ideaCount;
-
-    if (ideaLiked == true || ideaLiked == "true") {
-      count -= 1;
-      setIdeaLiked(false);
+    if (count === 0) {
+      count = 1;
     } else {
-      count += 1;
-      localStorage.setItem(`idea-liked-${id}`, true);
-      console.log(localStorage.getItem(`idea-liked-${id}`));
-      setIdeaLiked(true);
+      count = 0;
     }
     setIdeaCount(count);
     await fetch(`/api/notes/${id}`, {

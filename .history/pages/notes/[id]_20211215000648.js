@@ -183,18 +183,18 @@ export default function NoteId({ nnote }) {
   };
   const handleIdeaChange = async () => {
     //check if this client liked the note before or not first
-    let count = ideaCount;
+    let count = sadCount;
 
-    if (ideaLiked == true || ideaLiked == "true") {
+    if (sadLiked == true || sadLiked == "true") {
       count -= 1;
-      setIdeaLiked(false);
+      setSadLiked(false);
     } else {
       count += 1;
-      localStorage.setItem(`idea-liked-${id}`, true);
-      console.log(localStorage.getItem(`idea-liked-${id}`));
-      setIdeaLiked(true);
+      localStorage.setItem(`sad-liked-${id}`, true);
+      console.log(localStorage.getItem(`sad-liked-${id}`));
+      setSadLiked(true);
     }
-    setIdeaCount(count);
+    setSadCount(count);
     await fetch(`/api/notes/${id}`, {
       method: "PUT",
       headers: {
