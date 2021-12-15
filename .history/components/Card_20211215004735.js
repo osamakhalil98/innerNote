@@ -1,17 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Card({
-  noteName,
-  name,
-  message,
-  type,
-  id,
-  selectedType,
-}) {
+export default function Card({ noteName, name, message, type, id }) {
   const { query } = useRouter();
-  const [selectedNoteType, setSelectedNoteType] = useState("");
 
   const typeColor = (type) => {
     switch (type) {
@@ -29,10 +21,7 @@ export default function Card({
     }
   };
 
-  const handleTypeClick = async () => {
-    setSelectedNoteType(type);
-    return selectedType(selectedNoteType);
-  };
+  const handleTypeClick = async () => {};
   return (
     <>
       {console.log(query.type)}

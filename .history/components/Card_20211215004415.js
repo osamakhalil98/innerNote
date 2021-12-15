@@ -1,17 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Card({
-  noteName,
-  name,
-  message,
-  type,
-  id,
-  selectedType,
-}) {
+export default function Card({ noteName, name, message, type, id }) {
   const { query } = useRouter();
-  const [selectedNoteType, setSelectedNoteType] = useState("");
 
   const typeColor = (type) => {
     switch (type) {
@@ -29,18 +21,16 @@ export default function Card({
     }
   };
 
-  const handleTypeClick = async () => {
-    setSelectedNoteType(type);
-    return selectedType(selectedNoteType);
-  };
+  const handleTypeClick = async () => {};
   return (
     <>
       {console.log(query.type)}
       <div className="md:w-80 bg-indigo-600 rounded-lg shadow overflow-hidden hover:bg-indigo-500 py-4 my-8 mx-4 card-wrapper">
-        <h1 className="text-center py-1 font-bold text-indigo-100 md:text-2xl">
-          {noteName}
-        </h1>
         <Link href={`/notes/${id}`}>
+          <h1 className="text-center py-1 font-bold text-indigo-100 md:text-2xl">
+            {noteName}
+          </h1>
+
           <div className="w-80 truncate mx-auto whitespace-nowrap text-sm font-medium cursor-pointer">
             <p className="py-4 px-8 text-justify text-indigo-300 text-lg  truncate">
               {message}

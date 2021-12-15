@@ -10,7 +10,8 @@ export default function Grid() {
   const [notesType, setNotesType] = useState("");
   const router = useRouter();
   const { type } = router.query;
-
+  type = notesType;
+  router.push(router);
   const getNotes = async () => {
     //check if there's selected type first
 
@@ -26,8 +27,6 @@ export default function Grid() {
       const data = await jsonNotes.data;
       setNotesData(data);
     } else if (notesType) {
-      router.query.type = notesType;
-      router.push(router);
       const notes = await fetch(`/api/notes?type=${notesType}`, {
         headers: {
           "Content-Type": "application/json",

@@ -9,8 +9,9 @@ export default async function handler(req, res) {
   const { noteType, message, email, name, noteName, idea, sad, like, love } =
     req.body;
 
+  const router = useRouter();
+  const { type } = router.query;
   const { method } = req;
-  const { type } = req.query;
 
   try {
     // inserting the deconstructed data into our db

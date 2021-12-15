@@ -31,7 +31,7 @@ export default function Card({
 
   const handleTypeClick = async () => {
     setSelectedNoteType(type);
-    return selectedType(selectedNoteType);
+    return selectedType(type);
   };
   return (
     <>

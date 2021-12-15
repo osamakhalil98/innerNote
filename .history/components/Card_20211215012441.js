@@ -29,10 +29,7 @@ export default function Card({
     }
   };
 
-  const handleTypeClick = async () => {
-    setSelectedNoteType(type);
-    return selectedType(selectedNoteType);
-  };
+  const handleTypeClick = async () => {};
   return (
     <>
       {console.log(query.type)}

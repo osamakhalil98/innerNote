@@ -2,47 +2,29 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Card from "./Card";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Grid() {
   const [notesData, setNotesData] = useState([]);
   const [notesType, setNotesType] = useState("");
-  const router = useRouter();
-  const { type } = router.query;
 
   const getNotes = async () => {
-    //check if there's selected type first
-
-    if (notesType == "") {
-      const notes = await fetch(`/api/notes`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-
-      const jsonNotes = await notes.json();
-      const data = await jsonNotes.data;
-      setNotesData(data);
-    } else if (notesType) {
-      router.query.type = notesType;
-      router.push(router);
-      const notes = await fetch(`/api/notes?type=${notesType}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-
-      const jsonNotes = await notes.json();
-      const data = await jsonNotes.data;
-      setNotesData(data);
-    }
+    const notes = await fetch(`/api/notes`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    console.log(notes);
+    const jsonNotes = await notes.json();
+    const data = await jsonNotes.data;
+    setNotesData(data);
+    console.log(notesData);
   };
+
   useEffect(() => {
     getNotes();
-  }, [notesType]);
+  }, []);
 
   return (
     <div className="grid lg:grid-cols-3">

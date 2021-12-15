@@ -10,24 +10,17 @@ export default async function handler(req, res) {
     req.body;
 
   const { method } = req;
-  const { type } = req.query;
+  try {
+    const router = useRouter();
+  } catch (err) {
+    console.log(err);
+  }
 
   try {
     // inserting the deconstructed data into our db
 
     switch (method) {
       case "GET":
-        if (type) {
-          try {
-            const notes = await Note.find({ noteType: type });
-            res.status(200).json({ success: true, data: notes });
-          } catch (error) {
-            console.log("here");
-            res.status(400).json({ error }, "This is the problem");
-          }
-
-          break;
-        }
         try {
           const notes = await Note.find({});
           res.status(200).json({ success: true, data: notes });
