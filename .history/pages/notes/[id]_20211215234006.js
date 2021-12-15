@@ -80,9 +80,10 @@ export default function NoteId({ nnote }) {
 
     setLikeLiked(window.localStorage.getItem(`like-liked-${id}`));
 
+    setLoveLiked(window.localStorage.getItem(`love-liked-${id}`));
+
     setIdeaLiked(window.localStorage.getItem(`idea-liked-${id}`));
 
-    setLoveLiked(window.localStorage.getItem(`love-liked-${id}`));
     fetchMyAPI();
   }, []);
 
@@ -110,7 +111,6 @@ export default function NoteId({ nnote }) {
 
     if (sadLiked == true || sadLiked == "true") {
       count -= 1;
-      localStorage.setItem(`sad-liked-${id}`, false);
       setSadLiked(false);
     } else {
       count += 1;
@@ -141,7 +141,6 @@ export default function NoteId({ nnote }) {
 
     if (loveLiked == true || loveLiked == "true") {
       count -= 1;
-      localStorage.setItem(`love-liked-${id}`, false);
       setLoveLiked(false);
     } else {
       count += 1;
@@ -167,7 +166,6 @@ export default function NoteId({ nnote }) {
 
     if (likeLiked == true || likeLiked == "true") {
       count -= 1;
-      localStorage.setItem(`like-liked-${id}`, false);
       setLikeLiked(false);
     } else {
       count += 1;
@@ -193,7 +191,6 @@ export default function NoteId({ nnote }) {
 
     if (ideaLiked == true || ideaLiked == "true") {
       count -= 1;
-      localStorage.setItem(`idea-liked-${id}`, false);
       setIdeaLiked(false);
     } else {
       count += 1;
@@ -217,7 +214,7 @@ export default function NoteId({ nnote }) {
     <div className="bg-indigo-800 min-h-screen flex flex-col	justify-center items-center overflow-hidden">
       {note ? handleType(note.noteType) : ""}
 
-      <div className="mx-8 w-sm pb-8 pt-4 px-8 rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-96 ">
+      <div className="mx-8 w-sm pb-8 pt-4 px-8 rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-96">
         {note ? (
           <>
             <div className="text-center mb-4 text-indigo-200">
@@ -225,11 +222,9 @@ export default function NoteId({ nnote }) {
                 {note.noteName}
               </span>
             </div>
-            <p className="text-indigo-200 text-lg md:sw-90 break-words">
-              {note.message}{" "}
-            </p>{" "}
+            <p className="text-indigo-200 text-lg md:sw-90">{note.message} </p>{" "}
             <br />
-            <span className="text-indigo-200 text-sm break-words">
+            <span className="text-indigo-200 text-sm">
               {note.name ? `-${note.name}` : ""}
             </span>
           </>

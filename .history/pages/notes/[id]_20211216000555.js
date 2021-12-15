@@ -229,7 +229,7 @@ export default function NoteId({ nnote }) {
               {note.message}{" "}
             </p>{" "}
             <br />
-            <span className="text-indigo-200 text-sm break-words">
+            <span className="text-indigo-200 text-sm">
               {note.name ? `-${note.name}` : ""}
             </span>
           </>

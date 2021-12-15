@@ -49,7 +49,7 @@ export default function Form() {
         onSubmit={handleSubmit(onSubmit)}
         className="form pb-8 pt-4 px-4 rounded-xl bg-indigo-600 h-auto mx-w-sm shadow-1xl sm:w-96 text-gray-700 mb-4"
       >
-        <div className="mt-2 max-w-md">
+        <div className="mt-2 max-w-lg">
           <div className="grid grid-cols-1 gap-6">
             <label htmlFor="name" className="sr-only">
               Full name (optional)
@@ -64,7 +64,6 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
-                    w-76
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -89,7 +88,6 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
-                    w-76
                     mx-auto
                     rounded-md
                     bg-indigo-200

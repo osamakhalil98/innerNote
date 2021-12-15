@@ -225,13 +225,15 @@ export default function NoteId({ nnote }) {
                 {note.noteName}
               </span>
             </div>
-            <p className="text-indigo-200 text-lg md:sw-90 break-words">
-              {note.message}{" "}
-            </p>{" "}
-            <br />
-            <span className="text-indigo-200 text-sm break-words">
-              {note.name ? `-${note.name}` : ""}
-            </span>
+            <div className="oveflow-hidden">
+              <p className="text-indigo-200 text-lg md:w-1/2">
+                {note.message}{" "}
+              </p>{" "}
+              <br />
+              <span className="text-indigo-200 text-sm">
+                {note.name ? `-${note.name}` : ""}
+              </span>
+            </div>
           </>
         ) : (
           ""

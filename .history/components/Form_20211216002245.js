@@ -64,7 +64,6 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
-                    w-76
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -89,7 +88,6 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
-                    w-76
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -137,7 +135,7 @@ export default function Form() {
                 defaultValue="THOUGHT"
                 className="
                     block
-                    sm:w-80
+                    sm:w-92
                     mx-auto
                     rounded-md
                     bg-indigo-200
