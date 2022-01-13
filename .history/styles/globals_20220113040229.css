@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.title {
+  font-family: "Inter", sans-serif;
+  color: #818cf8;
+  max-width: 800px;
+}
+
+.sub-title {
+  font-family: "Inter", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+.idea-icon:focus {
+  color: red;
+  width: 10px;
+  background-color: yellow;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.3rem;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    line-height: 1.1em;
+  }
+  .explore-title {
+    font-size: 2.3rem;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    line-height: 1.1em;
+  }
+  .card-wrapper {
+    margin-bottom: 10px;
+  }
+  .title-wrapper {
+    width: 400px;
+  }
+  .sub-title {
+    font-size: 15px;
+  }
+  .note-type {
+    display: none;
+  }
+  .note-name {
+    display: none;
+  }
+  .note-name-author {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 25px;
+  }
+  .title-wrapper {
+    width: 300px;
+  }
+  .sub-title {
+    font-size: 12px;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
