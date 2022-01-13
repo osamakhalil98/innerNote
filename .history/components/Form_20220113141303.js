@@ -62,6 +62,7 @@ export default function Form() {
                 id="name"
                 autoComplete="name"
                 className={`mt-1
+               
                 block
                 sm:w-80
                 mx-auto
