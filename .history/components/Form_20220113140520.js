@@ -139,7 +139,6 @@ export default function Form() {
                 className="
                     block
                     sm:w-80
-                    w-68
                     mx-auto
                     rounded-md
                     bg-indigo-200

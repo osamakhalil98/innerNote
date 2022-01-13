@@ -282,8 +282,8 @@ export default function NoteId({ nnote }) {
             size={`2em`}
             className={`${
               sadLiked == true || sadLiked == "true"
-                ? "text-green-400"
-                : "text-indigo-200"
+                ? "text-green-500"
+                : "text-red-500"
             } cursor-pointer hover:text-green-300 mb-3 mx-4`}
             onClick={handleSadChange}
           />
@@ -319,9 +319,7 @@ export default function NoteId({ nnote }) {
           <AiFillHeart
             size={`2em`}
             className={`${
-              loveLiked === true || loveLiked === "true"
-                ? "text-red-600"
-                : "text-indigo-200"
+              loveLiked ? "text-red-600" : "text-indigo-200"
             } cursor-pointer hover:text-red-500 mb-3 mx-4`}
             onClick={handleLoveChange}
           />
@@ -337,9 +335,7 @@ export default function NoteId({ nnote }) {
           <BsLightbulbFill
             size={`2em`}
             className={`${
-              ideaLiked === true || ideaLiked === "true"
-                ? "text-yellow-500"
-                : "text-indigo-200"
+              ideaLiked ? "text-yellow-500" : "text-indigo-200"
             } cursor-pointer hover:text-yellow-300 mb-3 mx-4`}
             onClick={handleIdeaChange}
           />

@@ -337,9 +337,7 @@ export default function NoteId({ nnote }) {
           <BsLightbulbFill
             size={`2em`}
             className={`${
-              ideaLiked === true || ideaLiked === "true"
-                ? "text-yellow-500"
-                : "text-indigo-200"
+              ideaLiked ? "text-yellow-500" : "text-indigo-200"
             } cursor-pointer hover:text-yellow-300 mb-3 mx-4`}
             onClick={handleIdeaChange}
           />

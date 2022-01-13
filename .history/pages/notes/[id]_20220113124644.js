@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,13 +24,37 @@ export default function NoteId({ nnote }) {
   const [note, setNote] = useState({});
   const [notes, setNotes] = useState([]);
   const [ideaCount, setIdeaCount] = useState(0);
-  const [ideaLiked, setIdeaLiked] = useState();
+  const [ideaLiked, setIdeaLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`idea-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [sadCount, setSadCount] = useState(0);
-  const [sadLiked, setSadLiked] = useState();
+  const [sadLiked, setSadLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`sad-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [likeCount, setLikeCount] = useState(0);
-  const [likeLiked, setLikeLiked] = useState();
+  const [likeLiked, setLikeLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`like-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [loveCount, setLoveCount] = useState(0);
-  const [loveLiked, setLoveLiked] = useState();
+  const [loveLiked, setLoveLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`love-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
 
   async function fetchMyAPI() {
     let response = await fetch(`/api/notes/${currentId}`, {
@@ -152,7 +176,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`sad-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`sad-liked-${currentId}`));
       setSadLiked(true);
     }
     setSadCount(count);
@@ -183,7 +207,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`love-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`love-liked-${currentId}`));
       setLoveLiked(true);
     }
     setLoveCount(count);
@@ -209,7 +233,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`like-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`like-liked-${currentId}`));
       setLikeLiked(true);
     }
     setLikeCount(count);
@@ -235,7 +259,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`idea-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`idea-liked-${currentId}`));
       setIdeaLiked(true);
     }
     setIdeaCount(count);
@@ -278,11 +302,12 @@ export default function NoteId({ nnote }) {
 
       <div className="flex mb-8">
         <div className="text-center">
+          {console.log("sadliked", sadLiked)}
           <HiEmojiSad
             size={`2em`}
             className={`${
-              sadLiked == true || sadLiked == "true"
-                ? "text-green-400"
+              sadLiked === true || sadLiked === "true"
+                ? "text-green-500"
                 : "text-indigo-200"
             } cursor-pointer hover:text-green-300 mb-3 mx-4`}
             onClick={handleSadChange}
@@ -319,9 +344,7 @@ export default function NoteId({ nnote }) {
           <AiFillHeart
             size={`2em`}
             className={`${
-              loveLiked === true || loveLiked === "true"
-                ? "text-red-600"
-                : "text-indigo-200"
+              loveLiked ? "text-red-600" : "text-indigo-200"
             } cursor-pointer hover:text-red-500 mb-3 mx-4`}
             onClick={handleLoveChange}
           />
@@ -337,9 +360,7 @@ export default function NoteId({ nnote }) {
           <BsLightbulbFill
             size={`2em`}
             className={`${
-              ideaLiked === true || ideaLiked === "true"
-                ? "text-yellow-500"
-                : "text-indigo-200"
+              ideaLiked ? "text-yellow-500" : "text-indigo-200"
             } cursor-pointer hover:text-yellow-300 mb-3 mx-4`}
             onClick={handleIdeaChange}
           />

@@ -48,11 +48,7 @@ export default function Card({
           </div>
         </Link>
         <p className="font-medium text-indigo-200 px-5 py-4">
-          {name ? (
-            `-${name}`
-          ) : (
-            <span className="italic text-sm">incognito</span>
-          )}
+          {name ? `-${name}` : ""}
         </p>
         <span
           onClick={handleTypeClick}

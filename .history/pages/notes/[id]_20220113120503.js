@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,13 +24,37 @@ export default function NoteId({ nnote }) {
   const [note, setNote] = useState({});
   const [notes, setNotes] = useState([]);
   const [ideaCount, setIdeaCount] = useState(0);
-  const [ideaLiked, setIdeaLiked] = useState();
+  const [ideaLiked, setIdeaLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`idea-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [sadCount, setSadCount] = useState(0);
-  const [sadLiked, setSadLiked] = useState();
+  const [sadLiked, setSadLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`sad-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [likeCount, setLikeCount] = useState(0);
-  const [likeLiked, setLikeLiked] = useState();
+  const [likeLiked, setLikeLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`like-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
   const [loveCount, setLoveCount] = useState(0);
-  const [loveLiked, setLoveLiked] = useState();
+  const [loveLiked, setLoveLiked] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(`love-liked-${currentId}`);
+      const initialValue = saved;
+      return initialValue || false;
+    }
+  });
 
   async function fetchMyAPI() {
     let response = await fetch(`/api/notes/${currentId}`, {
@@ -152,7 +176,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`sad-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`sad-liked-${currentId}`));
       setSadLiked(true);
     }
     setSadCount(count);
@@ -183,7 +207,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`love-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`love-liked-${currentId}`));
       setLoveLiked(true);
     }
     setLoveCount(count);
@@ -209,7 +233,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`like-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`like-liked-${currentId}`));
       setLikeLiked(true);
     }
     setLikeCount(count);
@@ -235,7 +259,7 @@ export default function NoteId({ nnote }) {
     } else {
       count += 1;
       localStorage.setItem(`idea-liked-${currentId}`, true);
-
+      console.log(localStorage.getItem(`idea-liked-${currentId}`));
       setIdeaLiked(true);
     }
     setIdeaCount(count);
@@ -281,9 +305,7 @@ export default function NoteId({ nnote }) {
           <HiEmojiSad
             size={`2em`}
             className={`${
-              sadLiked == true || sadLiked == "true"
-                ? "text-green-400"
-                : "text-indigo-200"
+              sadLiked ? "text-green-500" : "text-green-200"
             } cursor-pointer hover:text-green-300 mb-3 mx-4`}
             onClick={handleSadChange}
           />
@@ -300,9 +322,7 @@ export default function NoteId({ nnote }) {
           <AiFillLike
             size={`2em`}
             className={`${
-              likeLiked === true || likeLiked === "true"
-                ? "text-blue-600"
-                : "text-indigo-200"
+              likeLiked ? "text-blue-600" : "text-indigo-200"
             } cursor-pointer hover:text-blue-400 mb-3 mx-4`}
             onClick={handleLikeChange}
           />
@@ -319,9 +339,7 @@ export default function NoteId({ nnote }) {
           <AiFillHeart
             size={`2em`}
             className={`${
-              loveLiked === true || loveLiked === "true"
-                ? "text-red-600"
-                : "text-indigo-200"
+              loveLiked ? "text-red-600" : "text-indigo-200"
             } cursor-pointer hover:text-red-500 mb-3 mx-4`}
             onClick={handleLoveChange}
           />
@@ -337,9 +355,7 @@ export default function NoteId({ nnote }) {
           <BsLightbulbFill
             size={`2em`}
             className={`${
-              ideaLiked === true || ideaLiked === "true"
-                ? "text-yellow-500"
-                : "text-indigo-200"
+              ideaLiked ? "text-yellow-500" : "text-indigo-200"
             } cursor-pointer hover:text-yellow-300 mb-3 mx-4`}
             onClick={handleIdeaChange}
           />
@@ -353,7 +369,7 @@ export default function NoteId({ nnote }) {
         </div>
       </div>
       <div className="mb-4 pb-2 md:w-84">
-        {notes[currentIndex - 1] ? (
+        {
           <span
             className="m-4 text-indigo-100 cursor-pointer hover:underline"
             onClick={handlePrev}
@@ -362,21 +378,19 @@ export default function NoteId({ nnote }) {
               <a>← Prev</a>
             </Link>
           </span>
-        ) : (
-          ""
-        )}
-        {notes[currentIndex + 1] ? (
-          <span
-            className="m-4 text-indigo-100 cursor-pointer hover:underline"
-            onClick={handleNext}
+        }
+        <span
+          className="m-4 text-indigo-100 cursor-pointer hover:underline"
+          onClick={handleNext}
+        >
+          <Link
+            href={`/notes/${
+              notes[currentIndex + 1] ? notes[currentIndex + 1]._id : ""
+            }`}
           >
-            <Link href={`/notes/${notes[currentIndex + 1]._id}`}>
-              <a>Next →</a>
-            </Link>
-          </span>
-        ) : (
-          ""
-        )}
+            <a>Next →</a>
+          </Link>
+        </span>
       </div>
       <h3 className="text-indigo-400">Share this innerNote!</h3>
       <div className="rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-52 flex justify-center p-4 my-2">
