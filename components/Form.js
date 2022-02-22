@@ -167,6 +167,7 @@ export default function Form() {
                     mb-1
                     block
                     sm:w-80
+                    w-60
                     mx-auto
                     rounded-md
                     bg-indigo-200

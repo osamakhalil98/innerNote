@@ -62,10 +62,11 @@ export default function Form() {
                 id="name"
                 autoComplete="name"
                 className={`mt-1
-                    block
-                    sm:w-80
-                    w-72
-                    mx-auto
+                block
+                sm:w-80
+                mx-auto
+                w-60
+                rounded-md
                     rounded-md
                     bg-indigo-200
                     border-transparent
@@ -89,7 +90,7 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
-                    w-76
+                    w-60
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -114,6 +115,7 @@ export default function Form() {
                 className={`mt-1
                     block
                     sm:w-80
+                    w-60
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -138,6 +140,7 @@ export default function Form() {
                 className="
                     block
                     sm:w-80
+                    w-60
                     mx-auto
                     rounded-md
                     bg-indigo-200
@@ -164,6 +167,7 @@ export default function Form() {
                     mb-1
                     block
                     sm:w-80
+                    w-60
                     mx-auto
                     rounded-md
                     bg-indigo-200
