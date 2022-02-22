@@ -258,29 +258,21 @@ export default function NoteId({ nnote }) {
       {note ? handleType(note.noteType) : ""}
 
       <div className="mx-8 w-sm pb-8 pt-4 px-8 rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-96 ">
-        {note ? (
-          <>
-            <div className="text-center mb-4 text-indigo-200">
-              <span className="text-6xl py-4 text-center mb-2">
-                {note.noteName}
-              </span>
-            </div>
-            <p className="text-indigo-200 text-lg md:sw-90 break-words">
-              {note.message}{" "}
-            </p>{" "}
-            <br />
-            <span className="text-indigo-200 text-sm break-words">
-              {note.name ? `-${note.name}` : ""}
+        <>
+          <div className="text-center mb-4 text-indigo-200">
+            <span className="text-6xl py-4 text-center mb-2">
+              {note.noteName}
             </span>
-          </>
-        ) : (
-          <TailSpin
-            height="100"
-            width="100"
-            color="#4F46E5"
-            ariaLabel="loading"
-          />
-        )}
+          </div>
+          <p className="text-indigo-200 text-lg md:sw-90 break-words">
+            {note.message}{" "}
+          </p>{" "}
+          <br />
+          <span className="text-indigo-200 text-sm break-words">
+            {note.name ? `-${note.name}` : ""}
+          </span>
+        </>
+        )
       </div>
 
       <div className="flex mb-8">

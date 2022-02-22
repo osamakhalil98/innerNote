@@ -6,6 +6,7 @@ import Pagination from "../../components/Pagination";
 import { useRouter } from "next/router";
 
 export default function InnerNotes() {
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="bg-indigo-800 min-h-screen flex flex-col	justify-center  items-center	overflow-hidden">
       <Head>

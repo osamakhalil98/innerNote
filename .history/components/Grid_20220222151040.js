@@ -106,16 +106,12 @@ export default function Grid({ loading }) {
           ))}
         </div>
       ) : (
-        <>
-          <div className="mx-auto flex justify-center">
-            <TailSpin
-              height="100"
-              width="100"
-              color="#4F46E5"
-              ariaLabel="loading"
-            />
-          </div>
-        </>
+        <TailSpin
+          height="100"
+          width="100"
+          color="#4F46E5"
+          ariaLabel="loading"
+        />
       )}
 
       <Pagination

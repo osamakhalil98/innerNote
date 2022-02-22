@@ -17,8 +17,8 @@ body {
 .main-title {
   background-image: linear-gradient(
     90deg,
-    rgb(228, 236, 241) 0%,
-    rgb(197, 140, 140) 100%
+    rgb(155, 193, 219) 0%,
+    rgb(19, 15, 15) 100%
   );
   color: transparent;
   background-clip: text;

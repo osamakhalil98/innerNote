@@ -274,12 +274,7 @@ export default function NoteId({ nnote }) {
             </span>
           </>
         ) : (
-          <TailSpin
-            height="100"
-            width="100"
-            color="#4F46E5"
-            ariaLabel="loading"
-          />
+          console.log("here")
         )}
       </div>
 

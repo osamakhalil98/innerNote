@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Form from "../components/Form";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import dbConnect from "../middleware/database";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default function Home() {

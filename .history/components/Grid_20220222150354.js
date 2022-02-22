@@ -88,36 +88,23 @@ export default function Grid({ loading }) {
           {`X ${notesType}`}
         </div>
       )}
-
-      {notesData ? (
-        <div className="grid lg:grid-cols-3">
-          {notesData.map((note, idx) => (
-            <>
-              <Card
-                key={idx}
-                id={note._id}
-                noteName={note.noteName}
-                name={note.name}
-                message={note.message}
-                noteType={note.noteType}
-                selectedType={(type) => setNotesType(type)}
-              />
-            </>
-          ))}
-        </div>
-      ) : (
-        <>
-          <div className="mx-auto flex justify-center">
-            <TailSpin
-              height="100"
-              width="100"
-              color="#4F46E5"
-              ariaLabel="loading"
-            />
-          </div>
-        </>
-      )}
-
+      <div className="grid lg:grid-cols-3">
+        {notesData.length > 0
+          ? notesData.map((note, idx) => (
+              <>
+                <Card
+                  key={idx}
+                  id={note._id}
+                  noteName={note.noteName}
+                  name={note.name}
+                  message={note.message}
+                  noteType={note.noteType}
+                  selectedType={(type) => setNotesType(type)}
+                />
+              </>
+            ))
+          : console.log("not loaded yet..")}
+      </div>
       <Pagination
         totalPages={totalPages}
         currentPage={activePage}

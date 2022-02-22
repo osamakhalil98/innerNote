@@ -9,7 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Link from "next/link";
 
 export default function Grid({ loading }) {
-  const [notesData, setNotesData] = useState("");
+  const [notesData, setNotesData] = useState([]);
   const [notesType, setNotesType] = useState("");
   const [totalPages, setTotalPges] = useState(1);
   const [activePage, setActivePage] = useState(1);
@@ -88,10 +88,9 @@ export default function Grid({ loading }) {
           {`X ${notesType}`}
         </div>
       )}
-
-      {notesData ? (
-        <div className="grid lg:grid-cols-3">
-          {notesData.map((note, idx) => (
+      <div className="grid lg:grid-cols-3">
+        {notesData ? (
+          notesData.map((note, idx) => (
             <>
               <Card
                 key={idx}
@@ -103,21 +102,12 @@ export default function Grid({ loading }) {
                 selectedType={(type) => setNotesType(type)}
               />
             </>
-          ))}
-        </div>
-      ) : (
-        <>
-          <div className="mx-auto flex justify-center">
-            <TailSpin
-              height="100"
-              width="100"
-              color="#4F46E5"
-              ariaLabel="loading"
-            />
-          </div>
-        </>
-      )}
-
+          ))
+        ) : (
+          <TailSpin color="#00BFFF" height={80} width={80} />
+          {console.log("not loaded yet")}
+        )}
+      </div>
       <Pagination
         totalPages={totalPages}
         currentPage={activePage}

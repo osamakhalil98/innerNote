@@ -88,10 +88,9 @@ export default function Grid({ loading }) {
           {`X ${notesType}`}
         </div>
       )}
-
-      {notesData ? (
-        <div className="grid lg:grid-cols-3">
-          {notesData.map((note, idx) => (
+      <div className="grid lg:grid-cols-3">
+        {notesData ? (
+          notesData.map((note, idx) => (
             <>
               <Card
                 key={idx}
@@ -103,21 +102,11 @@ export default function Grid({ loading }) {
                 selectedType={(type) => setNotesType(type)}
               />
             </>
-          ))}
-        </div>
-      ) : (
-        <>
-          <div className="mx-auto flex justify-center">
-            <TailSpin
-              height="100"
-              width="100"
-              color="#4F46E5"
-              ariaLabel="loading"
-            />
-          </div>
-        </>
-      )}
-
+          ))
+        ) : (
+          <TailSpin height="100" width="100" color="grey" ariaLabel="loading" />
+        )}
+      </div>
       <Pagination
         totalPages={totalPages}
         currentPage={activePage}

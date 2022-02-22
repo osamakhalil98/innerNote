@@ -274,12 +274,14 @@ export default function NoteId({ nnote }) {
             </span>
           </>
         ) : (
-          <TailSpin
-            height="100"
-            width="100"
-            color="#4F46E5"
-            ariaLabel="loading"
-          />
+          <div>
+            <TailSpin
+              height="100"
+              width="100"
+              color="#4F46E5"
+              ariaLabel="loading"
+            />
+          </div>
         )}
       </div>
 
@@ -394,7 +396,7 @@ export default function NoteId({ nnote }) {
         )}
       </div>
       <h3 className="text-indigo-400">Share this innerNote!</h3>
-      <div className="rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-44 flex justify-center p-2 my-1">
+      <div className="rounded-xl bg-indigo-600 shadow-1xl text-indigo-200 mb-4 md:w-44 flex justify-center p-3 my-2">
         <div className="flex my-3 py-3 ">
           <TwitterShareButton
             url={`https://inner-note.vercel.app/notes/${currentId}`}

@@ -107,7 +107,7 @@ export default function Grid({ loading }) {
         </div>
       ) : (
         <>
-          <div className="mx-auto flex justify-center">
+          <div className="mx-auto">
             <TailSpin
               height="100"
               width="100"

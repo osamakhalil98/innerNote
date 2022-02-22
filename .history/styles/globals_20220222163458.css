@@ -15,11 +15,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .main-title {
-  background-image: linear-gradient(
-    90deg,
-    rgb(228, 236, 241) 0%,
-    rgb(197, 140, 140) 100%
-  );
+  background-image: linear-gradient(90deg, #946dd3, #593796);
   color: transparent;
   background-clip: text;
 }

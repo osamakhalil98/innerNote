@@ -3,9 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Grid from "../../components/Grid";
 import Pagination from "../../components/Pagination";
+import { TrailSpin } from "react-loader-spinner";
 import { useRouter } from "next/router";
 
 export default function InnerNotes() {
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="bg-indigo-800 min-h-screen flex flex-col	justify-center  items-center	overflow-hidden">
       <Head>
@@ -24,7 +26,7 @@ export default function InnerNotes() {
             </a>
           </Link>
         </span>
-        <Grid className="mb-4 pb-4" />
+        <Grid className="mb-4 pb-4" loading={(state) => console.log(state)} />
       </main>
     </div>
   );

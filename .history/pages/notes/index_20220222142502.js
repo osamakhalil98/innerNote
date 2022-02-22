@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Grid from "../../components/Grid";
 import Pagination from "../../components/Pagination";
+import { TrailSpin } from "react-loader-spinner";
 import { useRouter } from "next/router";
 
 export default function InnerNotes() {
