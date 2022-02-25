@@ -23,7 +23,6 @@ export default async function userHandler(req,res){
                         success:false,
                         message:"This user doesn't exist"
                     })
-                    return;
             }
 
             else{

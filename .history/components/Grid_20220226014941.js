@@ -36,7 +36,13 @@ export default function Grid({ loading }) {
         }
         
       });
-      const notess = await fetch(`/api/notes`)
+      const notess = await fetch(`/api/notes`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        
+      })
       const jsonNotes = await notess.json();
       const data = await jsonNotes.data;
       setNotesData(data);
