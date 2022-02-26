@@ -13,7 +13,7 @@ import { userActions } from '../../redux/userSlice';
 export default function SignIn() {
 
   const dispatch = useDispatch();
-  const {getUserName, loggedIn} = userActions;
+  const {getUserName} = userActions;
 
     const usernameState = useSelector((state) => state.user.username)
 
@@ -38,10 +38,9 @@ export default function SignIn() {
         }).then(async (res) => {
           if(res.status === 200){
             const username = await res.json();
-            toast.success("signed in successfully");
+            toast.success("signed in successfully")
             const userUserName = await username.user;
             dispatch(getUserName(userUserName));
-            dispatch(loggedIn());
             router.push("/");
           }
           else {

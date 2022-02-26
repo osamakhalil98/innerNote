@@ -22,7 +22,7 @@ export default function Home() {
   }, [userName]);
 
   const handleLogout = () => {
-    removeCookies('jwt');
+    removeCookies('jwt')
     dispatch(loggedIn());
     dispatch(getUserName(""));
    

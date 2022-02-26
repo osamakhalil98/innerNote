@@ -6,7 +6,7 @@ import { setCookies } from 'cookies-next';
 
 
 
-export default async function userSignInHandler(req,res){
+export default async function userHandler(req,res){
     dbConnect();
     const maxAge = 3 * 24 * 60 * 60;
     const {email, password} = req.body;
