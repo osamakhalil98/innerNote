@@ -64,12 +64,11 @@ export default async function userHandler(req,res){
                 }
                catch(e){
                    res.status(400)
-                   return;
                }
                 break;
             default:
               res.status(400).json({ error: error, message:"ONLY POST AVAILABLE" });
-              return;
+              
               break;
     }
     

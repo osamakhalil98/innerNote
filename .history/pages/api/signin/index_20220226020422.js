@@ -42,7 +42,7 @@ export default async function userHandler(req,res){
                                 else{
                                     const jwt = sign(cred, process.env.JWT_KEY, {expiresIn:"24h"});
                                     setCookies('jwt', jwt, {req,res, httpOnly:true, maxAge:maxAge * 1000 })
-                                    res.status(200).json({user: requestedUser.username});
+                                    res.status(200).json({user: requestedUser.username})
                                     return;
                                 }
                             });
@@ -53,7 +53,6 @@ export default async function userHandler(req,res){
                     }
                     catch(e){
                         res.status(400).json({ success: false, message:e.message });
-                        return;
                     }
             }
             break;
@@ -64,12 +63,11 @@ export default async function userHandler(req,res){
                 }
                catch(e){
                    res.status(400)
-                   return;
                }
                 break;
             default:
               res.status(400).json({ error: error, message:"ONLY POST AVAILABLE" });
-              return;
+              
               break;
     }
     
