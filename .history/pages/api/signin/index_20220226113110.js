@@ -42,7 +42,7 @@ export default async function userSignInHandler(req,res){
                             }
                                 else{
                                     const jwt = sign(cred, process.env.JWT_KEY, {expiresIn:"24h"});
-                                    setCookies('jwt', jwt, { httpOnly:true, maxAge:maxAge})
+                                    setCookies('jwt', jwt, {req,res, httpOnly:true, maxAge:maxAge})
                                     res.status(200).json({user: requestedUser.username});
                                     return;
                                 }
