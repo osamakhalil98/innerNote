@@ -12,7 +12,7 @@ export default async function userHandler(req,res){
     const {email, password} = req.body;
     const{method} = req;
 
-   
+    try{
 
     switch(method){
         case "POST":
@@ -59,10 +59,19 @@ export default async function userHandler(req,res){
             }
             break;
 
-           
+            default:
+              res.status(400).json({ error: error, message:"ONLY POST AVAILABLE" });
+             
+              break;
              
     }
     
 
-   
+    }
+
+    catch(error){
+        res.status(400).json({
+            message: `Something went wrong :/ ${error}`,
+          });
+    }
 }

@@ -12,7 +12,7 @@ export default async function userHandler(req,res){
     const {email, password} = req.body;
     const{method} = req;
 
-   
+    try{
 
     switch(method){
         case "POST":
@@ -64,5 +64,11 @@ export default async function userHandler(req,res){
     }
     
 
-   
+    }
+
+    catch(error){
+        res.status(400).json({
+            message: `Something went wrong :/ ${error}`,
+          });
+    }
 }

@@ -38,19 +38,25 @@ export default function SignIn() {
         }).then(async (res) => {
           if(res.status === 200){
             const username = await res.json();
-            toast.success("signed in successfully")
             dispatch(await getUserName(username.user))
             router.push("/")
-          }
-          else {
-            toast.success("Something went wrong")
           }
         });
       };
     
       const onSubmit = async (data) => {
         try {
-          await create(data);
+          toast.promise(
+            create(data),
+            {
+              loading: "Working on it",
+              success: "Signed in successfully!",
+              error: "Sorry, try again!",
+            },
+            {
+              duration: 3000,
+            }
+          );
          
         } catch (error) {
           toast.error(error);

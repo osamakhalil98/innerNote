@@ -12,14 +12,14 @@ export default async function userHandler(req,res){
     const {email, password} = req.body;
     const{method} = req;
 
-   
+    try{
 
     switch(method){
         case "POST":
             // check if the user already exist or not
             const userEmail = await User.findOne({email : email});
             if(!userEmail){
-                    res.status(404).json({
+                    res.status(400).json({
                         success:false,
                         message:"This user doesn't exist"
                     })
@@ -59,10 +59,19 @@ export default async function userHandler(req,res){
             }
             break;
 
-           
+            default:
+              res.status(400).json({ error: error, message:"ONLY POST AVAILABLE" });
+             
+              break;
              
     }
     
 
-   
+    }
+
+    catch(error){
+        res.status(400).json({
+            message: `Something went wrong :/ ${error}`,
+          });
+    }
 }
