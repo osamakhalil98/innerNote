@@ -45,18 +45,21 @@ export default async function userSignInHandler(req, res) {
                       path: "/",
                     })
                   );
+                  res.status(200).json({ user: requestedUser.username });
                   resolve();
-                  return res.status(200).json({ user: requestedUser.username });
+                  return;
                 }
               });
             });
           });
         }
       } catch (e) {
-        return res.status(400).json({ success: false, message: e.message });
+        res.status(400).json({ success: false, message: e.message });
+        return;
       }
 
     default:
-      return res.status(400).json({ message: "This User Doesn't Exist" });
+      res.status(400).json({ message: "This User Doesn't Exist" });
+      return;
   }
 }
