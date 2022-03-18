@@ -2,49 +2,58 @@ import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster, toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../redux/userSlice";
 
-export default function SignIn() {
-  const dispatch = useDispatch();
-  const { getUserName, loggedIn } = userActions;
-
+export default function SignUp() {
+  let successState = false;
+  let failedStated = false;
   const router = useRouter();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm();
 
   const create = async (data) => {
-    await fetch(`/api/signin`, {
+    await fetch(`/api/signup`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify(data),
-    }).then(async (res) => {
-      if (res.status === 200) {
-        const username = await res.json();
-        const userUserName = await username.user;
-        dispatch(getUserName(userUserName));
-        dispatch(loggedIn());
-        router.push("/");
+    }).then((res) => {
+      if (res.status === 201) {
+        console.log(res);
+        successState = true;
       } else {
-        toast.error("Something went wrong");
+        failedStated = "Oops, something wrong happend!";
       }
     });
   };
 
   const onSubmit = async (data) => {
     try {
-      await create(data);
+      toast.promise(
+        create(data),
+        {
+          loading: "Working on it",
+
+          success: await successState,
+
+          error: await failedStated,
+        },
+
+        {
+          duration: 3000,
+        }
+      );
+      console.log(successState);
+      if (successState) {
+        router.push("/signin");
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -54,11 +63,10 @@ export default function SignIn() {
     <>
       <div className="bg-indigo-800 min-h-screen flex flex-col justify-center items-center">
         <div className="mt-3">
-          {" "}
-          <Image src={"/login.svg"} height={250} width={250} />
+          <Image src={"/signup.svg"} height={250} width={250} />
         </div>
         <h1 className="text-indigo-400 md:text-8xl mb-3 md:w-84 text-center">
-          Sign in!
+          Sign up to create and discover innerNotes!
         </h1>
         <section className="mb-3 mt-2">
           <Toaster />
@@ -68,6 +76,33 @@ export default function SignIn() {
           >
             <div className="mt-2 max-w-md">
               <div className="grid grid-cols-1 gap-6">
+                <label htmlFor="username" className="sr-only">
+                  username
+                </label>
+                <label className="block">
+                  <input
+                    {...register("username", { required: true })}
+                    type="text"
+                    name="username"
+                    id="username"
+                    autoComplete="username"
+                    className={`mt-1
+                block
+                sm:w-80
+                mx-auto
+                w-60
+                rounded-md
+                    rounded-md
+                    bg-indigo-200
+                    border-transparent
+                    focus:border-gray-500  focus:ring-0 ${
+                      errors.name
+                        ? "focus:ring-red-500 border-red-500"
+                        : "focus:ring-blue-500 focus:border-blue-500"
+                    }`}
+                    placeholder="UserName"
+                  />
+                </label>
                 <label htmlFor="email" className="sr-only">
                   Email
                 </label>
@@ -118,7 +153,31 @@ export default function SignIn() {
                     placeholder="Password"
                   />
                 </label>
-
+                <div className="block">
+                  <div className="mt-2 ml-2 text-center">
+                    <div>
+                      <label className="inline-flex items-center text-center">
+                        <input
+                          type="checkbox"
+                          className="
+                          rounded
+                          border-gray-300
+                          text-green-600
+                          shadow-sm
+                          focus:border-indigo-300
+                          focus:ring
+                          focus:ring-offset-0
+                          focus:ring-indigo-200
+                          focus:ring-opacity-50
+                        "
+                        />
+                        <span className="ml-2 text-sm text-white">
+                          I will be a good member :)
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
                 <label className="block">
                   <motion.button
                     //disabled={isSubmitted}
@@ -135,7 +194,7 @@ export default function SignIn() {
                 w-60
                 mx-auto py-3 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-indigo-800 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Sign in
+                    Sign up
                   </motion.button>
                 </label>
               </div>

@@ -29,7 +29,6 @@ export default async function userHandler(req, res) {
                 password: hash,
               });
               res.status(201).json({ success: true, data: user });
-              user.save();
             });
           } catch (e) {
             res.status(400).json({ success: false, message: e.message });

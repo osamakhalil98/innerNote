@@ -2,7 +2,7 @@ import dbConnect from "../../../middleware/database";
 import User from "../../../models/User";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
-import cookie from "cookie";
+import { setCookies } from "cookies-next";
 
 export default async function userSignInHandler(req, res) {
   dbConnect();
@@ -35,16 +35,7 @@ export default async function userSignInHandler(req, res) {
               return;
             } else {
               const jwt = sign(cred, process.env.JWT_KEY, { expiresIn: "24h" });
-              res.setHeader(
-                "Set-Cookie",
-
-                cookie.serialize("jwt", jwt, {
-                  httpOnly: true,
-
-                  maxAge: maxAge,
-                  path: "/",
-                })
-              );
+              setCookies("jwt", jwt, { req, res, maxAge: maxAge });
               res.status(200).json({ user: requestedUser.username });
               return;
             }

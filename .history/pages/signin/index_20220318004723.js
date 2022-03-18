@@ -23,7 +23,6 @@ export default function SignIn() {
   const create = async (data) => {
     await fetch(`/api/signin`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

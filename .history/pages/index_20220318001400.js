@@ -5,19 +5,17 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { userActions } from "../redux/userSlice";
-import cookies from "next-cookies";
-import { removeCookies, checkCookies } from "cookies-next";
+import { removeCookies } from "cookies-next";
 
-export default function Home({ jwtCookie }) {
-  const usernameState = useSelector((state) => state.user.username);
-  const loggedInState = useSelector((state) => state.user.isLoggedIn);
-  const [userName, setUserName] = useState(usernameState);
+export default function Home() {
+  const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const { getUserName, loggedIn } = userActions;
+  const usernameState = useSelector((state) => state.user.username);
+  const loggedInState = useSelector((state) => state.user.isLoggedIn);
+  console.log(loggedInState);
 
   useEffect(() => {
-    const checking = jwtCookie;
-    console.log(checking);
     setUserName(usernameState);
   }, [userName]);
 
@@ -80,9 +78,3 @@ export default function Home({ jwtCookie }) {
     </>
   );
 }
-
-Home.getInitialProps = async (ctx) => {
-  return {
-    jwtCookie: cookies(ctx).jwt || "",
-  };
-};

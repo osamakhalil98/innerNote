@@ -37,12 +37,8 @@ export default async function userSignInHandler(req, res) {
               const jwt = sign(cred, process.env.JWT_KEY, { expiresIn: "24h" });
               res.setHeader(
                 "Set-Cookie",
-
                 cookie.serialize("jwt", jwt, {
                   httpOnly: true,
-
-                  maxAge: maxAge,
-                  path: "/",
                 })
               );
               res.status(200).json({ user: requestedUser.username });

@@ -76,7 +76,7 @@ export default async function handler(req, res) {
 
           break;
         } else {
-          // const verification = jwt.verify(userToken, process.env.JWT_KEY);
+          const verification = jwt.verify(userToken, process.env.JWT_KEY);
 
           try {
             const notes = await Note.find({})

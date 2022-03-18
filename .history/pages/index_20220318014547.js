@@ -83,6 +83,6 @@ export default function Home({ jwtCookie }) {
 
 Home.getInitialProps = async (ctx) => {
   return {
-    jwtCookie: cookies(ctx).jwt || "",
+    jwtCookie: cookies(ctx) || "",
   };
 };

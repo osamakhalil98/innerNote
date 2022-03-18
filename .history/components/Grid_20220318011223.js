@@ -27,7 +27,7 @@ export default function Grid({ loading }) {
 
     if (notesType == "") {
       const notes = await fetch(`/api/notes`);
-      console.log(notes);
+      console.log(notes.json());
       const jsonNotes = await notes.json();
       const data = await jsonNotes.data;
       setNotesData(data);
@@ -76,10 +76,9 @@ export default function Grid({ loading }) {
   };
   useEffect(() => {
     if (loggedInState === false) {
-      toast("Sign up/Sign in to view innerNotes", {
+      toast("Sign up or Sign in to view innerNotes", {
         icon: "🔒",
       });
-      router.push("/");
     } else {
       getNotes();
     }

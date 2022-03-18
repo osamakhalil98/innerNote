@@ -2,9 +2,11 @@ import Head from "next/head";
 import Form from "../components/Form";
 import Link from "next/link";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { verify } from "jsonwebtoken";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { userActions } from "../redux/userSlice";
+import server from "../config/index.js";
 import cookies from "next-cookies";
 import { removeCookies, checkCookies } from "cookies-next";
 
@@ -82,7 +84,9 @@ export default function Home({ jwtCookie }) {
 }
 
 Home.getInitialProps = async (ctx) => {
+  const result = await fetch(`${server}/api/user`, ctx);
+  console.log(result);
   return {
-    jwtCookie: cookies(ctx).jwt || "",
+    user: result,
   };
 };

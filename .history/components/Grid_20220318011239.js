@@ -76,10 +76,9 @@ export default function Grid({ loading }) {
   };
   useEffect(() => {
     if (loggedInState === false) {
-      toast("Sign up/Sign in to view innerNotes", {
+      toast("Sign up or Sign in to view innerNotes", {
         icon: "🔒",
       });
-      router.push("/");
     } else {
       getNotes();
     }

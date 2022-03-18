@@ -8,7 +8,7 @@ import { userActions } from "../redux/userSlice";
 import cookies from "next-cookies";
 import { removeCookies, checkCookies } from "cookies-next";
 
-export default function Home({ jwtCookie }) {
+export default function Home() {
   const usernameState = useSelector((state) => state.user.username);
   const loggedInState = useSelector((state) => state.user.isLoggedIn);
   const [userName, setUserName] = useState(usernameState);
@@ -16,7 +16,7 @@ export default function Home({ jwtCookie }) {
   const { getUserName, loggedIn } = userActions;
 
   useEffect(() => {
-    const checking = jwtCookie;
+    const checking = checkCookies("jwt");
     console.log(checking);
     setUserName(usernameState);
   }, [userName]);
@@ -81,8 +81,8 @@ export default function Home({ jwtCookie }) {
   );
 }
 
-Home.getInitialProps = async (ctx) => {
+async function getInitialProps(ctx) {
   return {
-    jwtCookie: cookies(ctx).jwt || "",
+    jwtCookie: cookies(ctx).name || "",
   };
-};
+}
