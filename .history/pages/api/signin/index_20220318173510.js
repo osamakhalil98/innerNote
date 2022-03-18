@@ -1,10 +1,13 @@
 import dbConnect from "../../../middleware/database";
 import User from "../../../models/User";
 import bcryptHandler from "../../../middleware/bcryptHandler";
+import bcrypt from "bcrypt";
+import { sign } from "jsonwebtoken";
+import cookie from "cookie";
 
 export default async function userSignInHandler(req, res) {
   dbConnect();
-
+  const maxAge = 3 * 24 * 60 * 60;
   const { email, password } = req.body;
   const { method } = req;
 

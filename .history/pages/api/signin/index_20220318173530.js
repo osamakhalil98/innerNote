@@ -4,7 +4,7 @@ import bcryptHandler from "../../../middleware/bcryptHandler";
 
 export default async function userSignInHandler(req, res) {
   dbConnect();
-
+  const maxAge = 3 * 24 * 60 * 60;
   const { email, password } = req.body;
   const { method } = req;
 
