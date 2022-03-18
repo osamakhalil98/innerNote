@@ -3,6 +3,7 @@ import User from "../../../models/User";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import cookie from "cookie";
+import { reject } from "bcrypt/promises";
 
 export default async function userSignInHandler(req, res) {
   dbConnect();
@@ -31,7 +32,6 @@ export default async function userSignInHandler(req, res) {
               bcrypt.compare(password, userPassword, function (err, result) {
                 if (err) {
                   res.status(400).json({ message: err });
-                  reject();
                   return;
                 } else {
                   const jwt = sign(cred, process.env.JWT_KEY, {
@@ -48,7 +48,6 @@ export default async function userSignInHandler(req, res) {
                     })
                   );
                   res.status(200).json({ user: requestedUser.username });
-                  resolve();
                   return;
                 }
               });
@@ -59,6 +58,8 @@ export default async function userSignInHandler(req, res) {
         res.status(400).json({ success: false, message: e.message });
         return;
       }
+
+      break;
 
     default:
       res.status(400).json({ message: "This User Doesn't Exist" });

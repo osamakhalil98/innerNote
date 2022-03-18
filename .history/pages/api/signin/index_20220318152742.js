@@ -26,12 +26,13 @@ export default async function userSignInHandler(req, res) {
             userMail: requestedUser.email,
           };
 
-          return new Promise((resolve, reject) => {
-            bcrypt.hash(password, 10, function (err, hash) {
+          const bCryptValidation = bcrypt.hash(
+            password,
+            10,
+            function (err, hash) {
               bcrypt.compare(password, userPassword, function (err, result) {
                 if (err) {
                   res.status(400).json({ message: err });
-                  reject();
                   return;
                 } else {
                   const jwt = sign(cred, process.env.JWT_KEY, {
@@ -48,17 +49,19 @@ export default async function userSignInHandler(req, res) {
                     })
                   );
                   res.status(200).json({ user: requestedUser.username });
-                  resolve();
                   return;
                 }
               });
-            });
-          });
+            }
+          );
+          bCryptValidation();
         }
       } catch (e) {
         res.status(400).json({ success: false, message: e.message });
         return;
       }
+
+      break;
 
     default:
       res.status(400).json({ message: "This User Doesn't Exist" });

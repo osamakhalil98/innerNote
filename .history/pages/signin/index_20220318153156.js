@@ -28,7 +28,7 @@ export default function SignIn() {
         Accept: "application/json",
       },
       body: JSON.stringify(data),
-    }).then(async (res) => {
+    }).then((res) => {
       console.log("This is the response when signing in..", res);
       if (res.status === 200) {
         const username = await res.json();
@@ -151,8 +151,3 @@ export default function SignIn() {
     </>
   );
 }
-
-/*SignIn.getInitialProps = async ({ res }) =>{
-
-
-}*/

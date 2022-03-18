@@ -151,8 +151,3 @@ export default function SignIn() {
     </>
   );
 }
-
-/*SignIn.getInitialProps = async ({ res }) =>{
-
-
-}*/
