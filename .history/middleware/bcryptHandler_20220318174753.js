@@ -34,7 +34,6 @@ export default async function bcryptHandler(
         });
       });
     } catch (e) {
-      resolve();
       return res.status(400).json({ success: false, message: e.message });
     }
   });
