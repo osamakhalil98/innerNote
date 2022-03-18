@@ -58,7 +58,6 @@ export default async function userSignInHandler(req, res) {
       break;
 
     default:
-      res.status(400).json({ message: "This User Doesn't Exist" });
       return;
   }
 }
