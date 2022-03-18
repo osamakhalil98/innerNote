@@ -18,14 +18,13 @@ export default async function userSignInHandler(req, res) {
         return res.status(400).json({ message: "This User Doesn't Exist" });
       }
       // if the user already exists
+
       const cred = {
         sub: requestedUser._id,
         userMail: requestedUser.email,
       };
       const userPassword = await requestedUser.password;
-      // if this thing works then the problem in the bcrypthandler.js
-      return res.status(200).json({ user: requestedUser.username });
-    // return bcryptHandler(password, userPassword, cred, requestedUser, res);
+      return bcryptHandler(password, userPassword, cred, requestedUser, res);
 
     default:
       return res.status(400).json({ message: "This User Doesn't Exist" });

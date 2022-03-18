@@ -23,7 +23,6 @@ export default async function userSignInHandler(req, res) {
         userMail: requestedUser.email,
       };
       const userPassword = await requestedUser.password;
-      // if this thing works then the problem in the bcrypthandler.js
       return res.status(200).json({ user: requestedUser.username });
     // return bcryptHandler(password, userPassword, cred, requestedUser, res);
 
