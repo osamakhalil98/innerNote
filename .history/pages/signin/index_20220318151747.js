@@ -30,7 +30,7 @@ export default function SignIn() {
       },
       body: JSON.stringify(data),
     }).then(async (res) => {
-      console.log("This is the response when signing in..", res);
+      console.log(res);
       if (res.status === 200) {
         const username = await res.json();
         const userUserName = await username.user;
