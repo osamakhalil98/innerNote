@@ -15,7 +15,6 @@ export default async function userSignInHandler(req, res) {
       try {
         const requestedUser = await User.findOne({ email: email });
         res.status(200).json(await requestedUser);
-        console.Console(res);
       } catch (e) {
         res.status(400).json({ success: false, message: e.message });
         return;
