@@ -18,6 +18,7 @@ export default async function userSignInHandler(req, res) {
         // console.Console(res);
       } catch (e) {
         return res.status(400).json({ success: false, message: e.message });
+        return;
       }
 
     // check if the user already exist or not

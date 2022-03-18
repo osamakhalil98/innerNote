@@ -33,7 +33,17 @@ export default function SignIn() {
 
   const onSubmit = async (data) => {
     try {
-      await create(data);
+      console.log(data);
+      toast.promise(
+        create(data),
+        {
+          loading: "Working on it",
+        },
+
+        {
+          duration: 3000,
+        }
+      );
     } catch (error) {
       toast.error(error);
     }
