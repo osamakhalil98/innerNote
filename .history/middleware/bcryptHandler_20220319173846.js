@@ -19,16 +19,6 @@ export default async function bcryptHandler(password, requestedUser, res) {
         const jwt = sign(cred, `${process.env.JWT_KEY}`, {
           expiresIn: "24h",
         });
-
-        // saving jwt in a cookie
-        res.setHeader(
-          "Set-Cookie",
-          cookie.serialize("jwt", jwt, {
-            httpOnly: true,
-            maxAge: maxAge,
-            path: "/",
-          })
-        );
         resolve();
         return res.status(200).json({ user: requestedUser.username });
       } else {
