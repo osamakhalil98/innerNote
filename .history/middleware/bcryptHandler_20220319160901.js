@@ -16,9 +16,6 @@ export default async function bcryptHandler(password, requestedUser, res) {
       const comparePassword = bcrypt.compare(password, requestedUser.password);
 
       if (comparePassword) {
-        sign(cred, process.env.JWT_KEY, {
-          expiresIn: "24h",
-        });
         resolve();
         return res.status(200).json({ user: requestedUser.username });
       } else {
@@ -33,6 +30,28 @@ export default async function bcryptHandler(password, requestedUser, res) {
     }
   });
 }
+
+/*
+ 
+          if (err) {
+            return res.status(400).json({ message: err });
+          }
+          const jwt = sign(cred, process.env.JWT_KEY, {
+            expiresIn: "24h",
+          });
+          res.setHeader(
+            "Set-Cookie",
+            cookie.serialize("jwt", jwt, {
+              httpOnly: true,
+              maxAge: maxAge,
+              path: "/",
+            })
+          );
+          resolve();
+          return res.status(200).json({ user: requestedUser.username });
+        
+
+*/
 
 /*
 
