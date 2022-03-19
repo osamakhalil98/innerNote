@@ -8,18 +8,16 @@ export default async function bcryptHandler(password, requestedUser, res) {
   return new Promise((resolve, reject) => {
     const maxAge = 3 * 24 * 60 * 60;
     try {
-      /*const cred = {
+      const cred = {
         sub: requestedUser._id,
         userMail: requestedUser.email,
-      };*/
-      bcrypt.hash(password, 10);
-      const comparePassword = bcrypt.compare(password, requestedUser.password);
+      };
+      const hashedPassword = bcrypt.hash(password, 10);
+      const comparePassword = bcrypt.compare(password, hashedPassword);
 
       if (comparePassword) {
-        resolve();
         return res.status(200).json({ user: requestedUser.username });
       } else {
-        resolve();
         return res
           .status(400)
           .json({ message: "This user isn't authenticated" });

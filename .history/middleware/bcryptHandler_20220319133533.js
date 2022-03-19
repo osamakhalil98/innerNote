@@ -12,7 +12,8 @@ export default async function bcryptHandler(password, requestedUser, res) {
         sub: requestedUser._id,
         userMail: requestedUser.email,
       };*/
-      bcrypt.hash(password, 10);
+      const hashedPassword = bcrypt.hash(password, 10);
+      console.log(typeof requestedUser.password);
       const comparePassword = bcrypt.compare(password, requestedUser.password);
 
       if (comparePassword) {
