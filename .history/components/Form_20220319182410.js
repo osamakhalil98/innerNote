@@ -1,14 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import toast, { Toaster, toaster } from "react-hot-toast";
 
 export default function Form() {
-  const loggedInState = useSelector((state) => state.user.isLoggedIn);
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -30,27 +26,20 @@ export default function Form() {
   };
 
   const onSubmit = async (data) => {
-    if (loggedInState === false) {
-      toast("Sign up/Sign in to submit innerNotes", {
-        icon: "🔒",
-      });
-      router.push("/");
-    } else {
-      try {
-        toast.promise(
-          create(data),
-          {
-            loading: "Working on it",
-            success: "Note added successfully!",
-            error: "Sorry, try again!",
-          },
-          {
-            duration: 3000,
-          }
-        );
-      } catch (error) {
-        toast.error(error);
-      }
+    try {
+      toast.promise(
+        create(data),
+        {
+          loading: "Working on it",
+          success: "Note added successfully!",
+          error: "Sorry, try again!",
+        },
+        {
+          duration: 3000,
+        }
+      );
+    } catch (error) {
+      toast.error(error);
     }
   };
 

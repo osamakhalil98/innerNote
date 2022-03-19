@@ -1,14 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
 import toast, { Toaster, toaster } from "react-hot-toast";
 
 export default function Form() {
-  const loggedInState = useSelector((state) => state.user.isLoggedIn);
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -30,27 +25,20 @@ export default function Form() {
   };
 
   const onSubmit = async (data) => {
-    if (loggedInState === false) {
-      toast("Sign up/Sign in to submit innerNotes", {
-        icon: "🔒",
-      });
-      router.push("/");
-    } else {
-      try {
-        toast.promise(
-          create(data),
-          {
-            loading: "Working on it",
-            success: "Note added successfully!",
-            error: "Sorry, try again!",
-          },
-          {
-            duration: 3000,
-          }
-        );
-      } catch (error) {
-        toast.error(error);
-      }
+    try {
+      toast.promise(
+        create(data),
+        {
+          loading: "Working on it",
+          success: "Note added successfully!",
+          error: "Sorry, try again!",
+        },
+        {
+          duration: 3000,
+        }
+      );
+    } catch (error) {
+      toast.error(error);
     }
   };
 
@@ -63,6 +51,31 @@ export default function Form() {
       >
         <div className="mt-2 max-w-md">
           <div className="grid grid-cols-1 gap-6">
+            <label htmlFor="email" className="sr-only">
+              Email (optional)
+            </label>
+            <label className="block">
+              <input
+                {...register("email", { required: false })}
+                type="email"
+                name="email"
+                id="email"
+                className={`mt-1
+                    block
+                    sm:w-80
+                    w-60
+                    mx-auto
+                    rounded-md
+                    bg-indigo-200
+                    border-transparent
+                    focus:border-gray-500  focus:ring-0 ${
+                      errors.email
+                        ? "focus:ring-red-500 border-red-500"
+                        : "focus:ring-blue-500 focus:border-blue-500"
+                    }`}
+                placeholder="Email (optional)"
+              />
+            </label>
             <label htmlFor="noteName" className="sr-only">
               Name of the InnerNote
             </label>

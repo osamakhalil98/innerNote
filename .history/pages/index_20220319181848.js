@@ -43,8 +43,8 @@ export default function Home({ jwtCookie }) {
             </span>
           </h1>
           {userName ? (
-            <h1 className="font-bold mb-4 pb-2 my-auto py-3 px-4 title md:text-xl rounded-full mx-4  bg-red-100 text-blue-900">
-              <span className="text-sm">Hi,</span> {`${userName} 👋🏼`}{" "}
+            <h1 className="font-bold mb-2 pb-2 my-auto py-3 title md:text-xl rounded-full mx-1  bg-red-100 text-blue-900">
+              {`hi 💖 ${userName} 💖`}{" "}
             </h1>
           ) : (
             ""
