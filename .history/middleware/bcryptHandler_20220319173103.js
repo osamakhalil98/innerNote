@@ -16,7 +16,6 @@ export default async function bcryptHandler(password, requestedUser, res) {
       const comparePassword = bcrypt.compare(password, requestedUser.password);
 
       if (comparePassword) {
-        console.log(`${process.env.JWT_KEY}`)
         sign(cred, `${process.env.JWT_KEY}`, {
           expiresIn: "24h",
         });
