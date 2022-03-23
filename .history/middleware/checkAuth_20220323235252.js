@@ -5,7 +5,7 @@ export default function checkAuth(headers) {
 
   if (cookieStr) {
     const cookie = cookieStr.substring(4);
-    const decoded = jwt.verify(cookie, `${process.env.JWT_KEY}`);
+    const decoded = jwt.verify(cookie, process.env.JWT_KEY);
     return decoded;
   } else {
     return "UnAuthenticted";
