@@ -11,6 +11,7 @@ export default function checkAuth(headers) {
         jwtTokenState = "jwtTokenExpired";
       } else {
         jwtTokenState = decoded;
+        console.log(jwtTokenState);
       }
     });
 

@@ -32,7 +32,6 @@ export default function Home({ headers }) {
   const handleLogout = () => {
     dispatch(loggedIn(false));
     dispatch(setUserNameValue(""));
-    setUserName("");
   };
   return (
     <>

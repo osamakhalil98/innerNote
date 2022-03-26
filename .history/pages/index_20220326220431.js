@@ -25,14 +25,14 @@ export default function Home({ headers }) {
       dispatch(setUserNameValue(authState?.userName));
       setUserName(authState?.userName);
     } else if (authState == "jwtTokenExpired") {
-      handleLogout();
+      dispatch(loggedIn(false));
+      dispatch(setUserNameValue(""));
     }
-  }, [userName, loggedInState]);
+  }, [userName, loggedInState, isLoggedIn]);
 
   const handleLogout = () => {
     dispatch(loggedIn(false));
     dispatch(setUserNameValue(""));
-    setUserName("");
   };
   return (
     <>

@@ -38,6 +38,7 @@ export default function SignIn() {
         const userUserName = await username.user;
         dispatch(setUserNameValue(userUserName));
         dispatch(loggedIn(true));
+        console.log(loggedInState);
         router.push("/");
       } else {
         toast.error("Something went wrong");

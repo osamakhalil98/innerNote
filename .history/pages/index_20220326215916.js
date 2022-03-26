@@ -24,15 +24,17 @@ export default function Home({ headers }) {
       setIsLoggedIn(true);
       dispatch(setUserNameValue(authState?.userName));
       setUserName(authState?.userName);
-    } else if (authState == "jwtTokenExpired") {
+    } else if (
+      authState == "UnAuthenticted" ||
+      authState == "jwtTokenExpired"
+    ) {
       handleLogout();
     }
-  }, [userName, loggedInState]);
+  }, [userName, loggedInState, isLoggedIn]);
 
   const handleLogout = () => {
     dispatch(loggedIn(false));
     dispatch(setUserNameValue(""));
-    setUserName("");
   };
   return (
     <>
@@ -52,7 +54,7 @@ export default function Home({ headers }) {
           </h1>
           {userName ? (
             <h1 className="font-bold mb-4 pb-2 my-auto py-3 px-4 title md:text-xl rounded-full mx-4  bg-red-100 text-blue-900">
-              <span className="text-xs">Hey,</span> {`${userName} 👋🏼`}{" "}
+              <span className="text-sm">Hi,</span> {`${userName} 👋🏼`}{" "}
             </h1>
           ) : (
             ""

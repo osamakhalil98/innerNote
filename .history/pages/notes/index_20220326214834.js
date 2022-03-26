@@ -20,7 +20,6 @@ export default function InnerNotes({ headers }) {
     const authState = checkAuth(headers);
     if (authState?.userName || authState?.userMail) {
       dispatch(loggedIn(true));
-      setIsLoggedIn(true);
       dispatch(setUserNameValue(authState?.userName));
     } else if (
       authState == "UnAuthenticted" ||

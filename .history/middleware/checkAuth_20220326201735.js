@@ -2,19 +2,18 @@ import jwt from "jsonwebtoken";
 
 export default function checkAuth(headers) {
   const cookieStr = headers ? headers.cookie : "";
-  let jwtTokenState = "";
 
   if (cookieStr) {
     const slicedCookie = cookieStr.substring(4);
     jwt.verify(slicedCookie, `${process.env.JWT_KEY}`, function (err, decoded) {
       if (err) {
-        jwtTokenState = "jwtTokenExpired";
+        // console.log(err);
+        return "UnAuthenticted";
       } else {
-        jwtTokenState = decoded;
+        return decoded;
       }
     });
-
-    return jwtTokenState;
+    // console.log(decoded.message);
   } else {
     return "UnAuthenticted";
   }

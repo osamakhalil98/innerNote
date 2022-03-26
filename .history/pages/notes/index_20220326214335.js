@@ -10,6 +10,7 @@ import checkAuth from "../../middleware/checkAuth";
 
 export default function InnerNotes({ headers }) {
   const router = useRouter();
+  console.log(headers);
   const loggedInState = useSelector((state) => state.user.isLoggedIn);
 
   const dispatch = useDispatch();
@@ -20,16 +21,13 @@ export default function InnerNotes({ headers }) {
     const authState = checkAuth(headers);
     if (authState?.userName || authState?.userMail) {
       dispatch(loggedIn(true));
-      setIsLoggedIn(true);
       dispatch(setUserNameValue(authState?.userName));
+      setUserName(authState?.userName);
     } else if (
       authState == "UnAuthenticted" ||
       authState == "jwtTokenExpired"
     ) {
-      router.push("/");
-      toast("Sign up/Sign in to view innerNotes!", {
-        icon: "🔒",
-      });
+      handleLogout();
     } else {
       router.push("/");
       toast("Sign up/Sign in to view innerNotes!", {

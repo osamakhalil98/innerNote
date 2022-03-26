@@ -2,6 +2,8 @@ import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import cookie from "cookie";
 
+// calling this function will result in 500 status code
+
 export default async function bcryptHandler(password, requestedUser, res) {
   return new Promise((resolve, reject) => {
     const maxAge = 3 * 24 * 60 * 60;
@@ -16,7 +18,7 @@ export default async function bcryptHandler(password, requestedUser, res) {
 
       if (comparePassword) {
         const jwt = sign(cred, `${process.env.JWT_KEY}`, {
-          expiresIn: maxAge,
+          expiresIn: "60s",
         });
 
         // saving jwt in a cookie

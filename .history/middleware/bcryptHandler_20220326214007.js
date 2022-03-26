@@ -16,7 +16,7 @@ export default async function bcryptHandler(password, requestedUser, res) {
 
       if (comparePassword) {
         const jwt = sign(cred, `${process.env.JWT_KEY}`, {
-          expiresIn: maxAge,
+          expiresIn: "60s",
         });
 
         // saving jwt in a cookie

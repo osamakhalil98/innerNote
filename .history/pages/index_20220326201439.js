@@ -5,34 +5,33 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { userActions } from "../redux/userSlice";
+import { removeCookies } from "cookies-next";
 import checkAuth from "../middleware/checkAuth";
 
-export default function Home({ headers }) {
+export default function Home({ decoded }) {
   const usernameState = useSelector((state) => state.user.username);
   const loggedInState = useSelector((state) => state.user.isLoggedIn);
-  console.log(loggedInState);
+
   const dispatch = useDispatch();
   const { setUserNameValue, loggedIn } = userActions;
   const [userName, setUserName] = useState(usernameState);
-  const [isLoggedIn, setIsLoggedIn] = useState(loggedInState);
 
   useEffect(() => {
-    const authState = checkAuth(headers);
-
-    if (authState?.userName || authState?.userMail) {
+    // const authState = checkAuth(headers);
+    //console.log(authState);
+    console.log(decoded);
+    if (decoded !== "UnAuthenticted") {
       dispatch(loggedIn(true));
-      setIsLoggedIn(true);
-      dispatch(setUserNameValue(authState?.userName));
-      setUserName(authState?.userName);
-    } else if (authState == "jwtTokenExpired") {
+      dispatch(setUserNameValue(decoded?.userName));
+      setUserName(decoded?.userName);
+    } else if (decoded === "UnAuthenticted") {
       handleLogout();
     }
-  }, [userName, loggedInState]);
+  }, [userName]);
 
   const handleLogout = () => {
     dispatch(loggedIn(false));
     dispatch(setUserNameValue(""));
-    setUserName("");
   };
   return (
     <>
@@ -52,7 +51,7 @@ export default function Home({ headers }) {
           </h1>
           {userName ? (
             <h1 className="font-bold mb-4 pb-2 my-auto py-3 px-4 title md:text-xl rounded-full mx-4  bg-red-100 text-blue-900">
-              <span className="text-xs">Hey,</span> {`${userName} 👋🏼`}{" "}
+              <span className="text-sm">Hi,</span> {`${userName} 👋🏼`}{" "}
             </h1>
           ) : (
             ""
@@ -94,6 +93,7 @@ Home.getInitialProps = async (ctx) => {
   const headers = {
     cookie: cookie,
   };
-
-  return { headers };
+  const decoded = checkAuth(headers);
+  console.log(decoded);
+  return { decoded };
 };

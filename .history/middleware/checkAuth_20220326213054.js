@@ -6,13 +6,17 @@ export default function checkAuth(headers) {
 
   if (cookieStr) {
     const slicedCookie = cookieStr.substring(4);
-    jwt.verify(slicedCookie, `${process.env.JWT_KEY}`, function (err, decoded) {
-      if (err) {
-        jwtTokenState = "jwtTokenExpired";
-      } else {
-        jwtTokenState = decoded;
+    const decoded = jwt.verify(
+      slicedCookie,
+      `${process.env.JWT_KEY}`,
+      function (err, decoded) {
+        if (err) {
+          jwtTokenState = "jwtTokenExpired";
+        } else {
+          jwtTokenState = decoded;
+        }
       }
-    });
+    );
 
     return jwtTokenState;
   } else {
